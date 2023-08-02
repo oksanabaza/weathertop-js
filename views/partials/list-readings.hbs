@@ -1,22 +1,26 @@
 <table class="table is-fullwidth">
   <thead>
     <tr>
-      <th>Track</th>
-      <th>Artist</th>
-      <th>Duration</th>
+      <th>Code</th>
+      <th>Temperature</th>
+      <th>Wind Speed</th>
+      <th>Pressure</th>
     </tr>
   </thead>
   <tbody>
     {{#each station.readings}}
       <tr>
         <td>
-          {{title}}
+          {{code}}
         </td>
         <td>
-          {{artist}}
+          {{temp}}
         </td>
         <td>
-          {{duration}}
+          {{windSpeed}}
+        </td>
+        <td>
+          {{pressure}}
         </td>
       </tr>
     {{/each}}

@@ -2,17 +2,11 @@
   "file": "./models/readings.json",
   "readings": [
     {
-      "title": "ef",
-      "artist": "feef",
-      "duration": 4,
-      "_id": "51c2dbbc-763a-4580-8d64-a3b260c0436d",
-      "playlistid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
-    },
-    {
-      "title": "e",
-      "artist": "e",
-      "duration": 4,
-      "_id": "5560cec9-7e09-4a7a-8e0f-3c544ade3b8f",
+      "code": 66,
+      "temp": 6,
+      "windSpeed": 6,
+      "pressure": 6,
+      "_id": "1d3d4c02-9482-4035-83f8-797618e7e824",
       "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
     }
   ]
