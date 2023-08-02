@@ -1,0 +1,19 @@
+{
+  "file": "./models/readings.json",
+  "readings": [
+    {
+      "title": "ef",
+      "artist": "feef",
+      "duration": 4,
+      "_id": "51c2dbbc-763a-4580-8d64-a3b260c0436d",
+      "playlistid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "title": "e",
+      "artist": "e",
+      "duration": 4,
+      "_id": "5560cec9-7e09-4a7a-8e0f-3c544ade3b8f",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    }
+  ]
+}

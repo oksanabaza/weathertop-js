@@ -1,6 +1,6 @@
 {
-  "file": "./models/playlists.json",
-  "playlists": [
+  "file": "./models/stations.json",
+  "stations": [
     {
       "title": "ewfe",
       "_id": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
