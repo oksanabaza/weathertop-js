@@ -2,8 +2,16 @@
   "file": "./models/stations.json",
   "stations": [
     {
-      "name": "ewfe",
+      "name": "Dunmore",
       "_id": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "name": "Tramore",
+      "_id": "d457949e-00a4-4c67-931d-e4cda4e1bd07"
+    },
+    {
+      "name": "Kilkenny",
+      "_id": "16b75dc8-927f-48ae-a052-0e42fbe5579e"
     }
   ]
 }

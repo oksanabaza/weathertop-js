@@ -1,20 +1,25 @@
+import { readingStore } from "../models/reading-store.js";
 import { stationStore } from "../models/station-store.js";
+import { getLatestReading } from "../utils/station-utils.js";
 
 export const dashboardController = {
   async index(request, response) {
+    // const station = await stationStore.getStationById(request.params.id);
+    // const latestReading = await getLatestReading(station);
     const viewData = {
-      title: "Station Dashboard",
+      name: "Station Dashboard",
       stations: await stationStore.getAllStations(),
+      test: ["testik1", "testik 2"],
+      // latestReading: await readingStore.getReadingsByStationId(request.params.id),
     };
-    console.log("dashboard rendering");
     response.render("dashboard-view", viewData);
   },
 
   async addStation(request, response) {
     const newStation = {
-      title: request.body.title,
+      name: request.body.name,
     };
-    console.log(`adding station ${newStation.title}`);
+    console.log(`adding station ${newStation.name}`);
     await stationStore.addStation(newStation);
     response.redirect("/dashboard");
   },
