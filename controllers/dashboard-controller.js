@@ -3,14 +3,24 @@ import { readingStore } from "../models/reading-store.js";
 
 export const dashboardController = {
   async index(request, response) {
-    const test = ["first string", "second string"];
+    const stations = await stationStore.getAllStations();
+    const readings = await readingStore.getAllReadings();
+
+    // Combine stations and get the last code for each station
+    const combinedData = stations.map((station) => {
+      const matchingReadings = readings.filter((reading) => reading.stationid === station._id);
+      const lastMatchingReading = matchingReadings.length > 0 ? matchingReadings[matchingReadings.length - 1] : null;
+
+      return {
+        ...station,
+        testCode: lastMatchingReading ? lastMatchingReading.code : null,
+      };
+    });
+
     const viewData = {
       title: "Station Dashboard",
-      stations: await stationStore.getAllStations(),
-      test: await readingStore.getAllReadings(),
-      // test: test[0],
+      data: combinedData,
     };
-    // console.log("dashboard rendering");
     response.render("dashboard-view", viewData);
   },
 

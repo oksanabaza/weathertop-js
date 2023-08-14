@@ -2,12 +2,26 @@
 
 <section class="section">
   {{> list-stations}}
-  {{> add-station}}
-   {{#each test}}
+  {{!-- {{> add-station}} --}}
+  {{#each data}}
   <div class="box box-link-hover-shadow">
     <h2 class="title">
-   {{code}}
+      <a href="/station/{{_id}}">
+        {{name}}
+      </a>
+      <div>
+        {{testCode}}
+      </div>
     </h2>
   </div>
 {{/each}}
+   {{!-- {{#each test}}
+  <div class="box box-link-hover-shadow">
+    <h2 class="title">
+   {{stationid}}
+    </h2>
+    <h3>{{code}}</h3>
+  </div>
+{{/each}} --}}
+
 </section>

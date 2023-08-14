@@ -18,11 +18,10 @@ export const readingController = {
     const stationId = request.params.stationid;
     const readingId = request.params.readingid;
     const updatedReading = {
-      code: request.body.code,
-      temp: request.body.temp,
-      windSpeed: request.params.windSpeed,
-      pressure: request.body.pressure,
-      //   duration: Number(request.body.duration),
+      code: Number(request.body.code),
+      temp: Number(request.body.temp),
+      windSpeed: Number(request.params.windSpeed),
+      pressure: Number(request.body.pressure),
     };
     console.log(`Updating reading ${readingId} from station ${stationId}`);
     await readingStore.updateReading(readingId, updatedReading);
