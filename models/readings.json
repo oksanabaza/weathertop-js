@@ -2,18 +2,67 @@
   "file": "./models/readings.json",
   "readings": [
     {
-      "title": "ef",
-      "artist": "feef",
-      "duration": 4,
-      "_id": "51c2dbbc-763a-4580-8d64-a3b260c0436d",
-      "playlistid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+      "code": 66,
+      "temp": 6,
+      "windSpeed": 6,
+      "pressure": 6,
+      "_id": "1d3d4c02-9482-4035-83f8-797618e7e824",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
     },
     {
-      "title": "e",
-      "artist": "e",
-      "duration": 4,
-      "_id": "5560cec9-7e09-4a7a-8e0f-3c544ade3b8f",
+      "code": 55,
+      "temp": 67,
+      "windSpeed": 89,
+      "pressure": 6,
+      "_id": "735bb257-2fd7-4c55-8634-b1a704558612",
       "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "code": 788,
+      "temp": 786,
+      "windSpeed": 68,
+      "pressure": 6787,
+      "_id": "d0bb7b02-8066-4178-a09d-641a14821346",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "code": 4,
+      "temp": 4,
+      "windSpeed": 4,
+      "pressure": 3,
+      "_id": "469c49bd-3a90-4669-b7f8-70acbb85cec6",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "code": 56,
+      "temp": 56,
+      "windSpeed": 56,
+      "pressure": 56,
+      "_id": "4923577a-595d-4048-812f-f7667b738059",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "title": "4",
+      "artist": "4",
+      "duration": 4,
+      "_id": "4572bbb9-2cef-4921-b709-d3b8e2c115fa",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "code": "3",
+      "temp": "4",
+      "windSpeed": "5",
+      "pressure": "6",
+      "_id": "6ee5d88a-fc9d-48d2-a7a4-f2f500b86f38",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "code": "5",
+      "temp": "6",
+      "windSpeed": "7",
+      "pressure": "8",
+      "_id": "291758bb-a8e3-46b1-9ab8-bc5481208c6c",
+      "stationid": "0a176ebb-097c-4a5d-a2e2-f8adef58007f"
     }
   ]
 }

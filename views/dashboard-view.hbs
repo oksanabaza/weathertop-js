@@ -3,4 +3,11 @@
 <section class="section">
   {{> list-stations}}
   {{> add-station}}
+   {{#each test}}
+  <div class="box box-link-hover-shadow">
+    <h2 class="title">
+   {{code}}
+    </h2>
+  </div>
+{{/each}}
 </section>

@@ -5,7 +5,7 @@ export const stationController = {
   async index(request, response) {
     const station = await stationStore.getStationById(request.params.id);
     const viewData = {
-      title: "station",
+      name: "station",
       station: station,
     };
     response.render("station-view", viewData);
@@ -14,11 +14,13 @@ export const stationController = {
   async addReading(request, response) {
     const station = await stationStore.getStationById(request.params.id);
     const newReading = {
-      title: request.body.title,
-      artist: request.body.artist,
-      duration: Number(request.body.duration),
+      code: request.body.code,
+      temp: request.body.temp,
+      windSpeed: request.body.windSpeed,
+      pressure: request.body.pressure,
+      // duration: Number(request.body.duration),
     };
-    console.log(`adding reading ${newReading.title}`);
+    console.log(`adding reading ${newReading.code}`);
     await readingStore.addReading(station._id, newReading);
     response.redirect("/station/" + station._id);
   },
