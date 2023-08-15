@@ -45,10 +45,10 @@ export const dashboardController = {
 
       return {
         ...station,
-        code: lastMatchingReading ? codeAction : null,
-        temp: lastMatchingReading ? lastMatchingReading.temp : null,
-        windSpeed: lastMatchingReading ? lastMatchingReading.windSpeed : null,
-        pressure: lastMatchingReading ? lastMatchingReading.pressure : null,
+        code: lastMatchingReading ? codeAction : "N/A",
+        temp: lastMatchingReading ? lastMatchingReading.temp : "N/A",
+        windSpeed: lastMatchingReading ? lastMatchingReading.windSpeed : "N/A",
+        pressure: lastMatchingReading ? lastMatchingReading.pressure : "N/A",
       };
     });
 
