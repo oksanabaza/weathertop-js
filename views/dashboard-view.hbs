@@ -2,7 +2,7 @@
 
 <section class="section">
   {{> list-stations}}
-  {{!-- {{> add-station}} --}}
+  
   {{#each data}}
   <div class="box box-link-hover-shadow">
     <h2 class="title">
@@ -10,18 +10,20 @@
         {{name}}
       </a>
       <div>
-        {{testCode}}
+       code:  {{code}}
+      </div>
+       <div>
+       temp:  {{temp}}
+      </div>
+       <div>
+       wind speed:  {{windSpeed}}
+      </div>
+       <div>
+       pressure:  {{pressure}}
       </div>
     </h2>
   </div>
 {{/each}}
-   {{!-- {{#each test}}
-  <div class="box box-link-hover-shadow">
-    <h2 class="title">
-   {{stationid}}
-    </h2>
-    <h3>{{code}}</h3>
-  </div>
-{{/each}} --}}
 
+{{> add-station}}
 </section>

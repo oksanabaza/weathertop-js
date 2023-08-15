@@ -13,7 +13,10 @@ export const dashboardController = {
 
       return {
         ...station,
-        testCode: lastMatchingReading ? lastMatchingReading.code : null,
+        code: lastMatchingReading ? lastMatchingReading.code : null,
+        temp: lastMatchingReading ? lastMatchingReading.temp : null,
+        windSpeed: lastMatchingReading ? lastMatchingReading.windSpeed : null,
+        pressure: lastMatchingReading ? lastMatchingReading.pressure : null,
       };
     });
 

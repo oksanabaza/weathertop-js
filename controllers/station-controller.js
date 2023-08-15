@@ -4,10 +4,17 @@ import { readingStore } from "../models/reading-store.js";
 export const stationController = {
   async index(request, response) {
     const station = await stationStore.getStationById(request.params.id);
+    let index = station.readings ? station.readings.length - 1 : null;
     const viewData = {
       name: "station",
       station: station,
+      code: station.readings[index].code,
+      temp: station.readings[index].temp,
+      tempF: (station.readings[index].temp * 9) / 5 + 32,
+      windSpeed: station.readings[index].windSpeed,
+      pressure: station.readings[index].pressure,
     };
+
     response.render("station-view", viewData);
   },
 
