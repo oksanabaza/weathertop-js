@@ -2,8 +2,28 @@
   "file": "./models/stations.json",
   "stations": [
     {
-      "title": "ewfe",
+      "name": "Dunmore",
       "_id": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "name": "Tramore",
+      "_id": "d457949e-00a4-4c67-931d-e4cda4e1bd07"
+    },
+    {
+      "name": "Kilkenny",
+      "_id": "16b75dc8-927f-48ae-a052-0e42fbe5579e"
+    },
+    {
+      "name": "ewgEG",
+      "_id": "0a176ebb-097c-4a5d-a2e2-f8adef58007f"
+    },
+    {
+      "name": "weathertop",
+      "_id": "83196d19-1b6e-4467-ab21-da7e33309450"
+    },
+    {
+      "name": "atest",
+      "_id": "db2a987d-c50c-4832-a708-b572059f9136"
     }
   ]
 }

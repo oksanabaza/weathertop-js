@@ -2,17 +2,115 @@
   "file": "./models/readings.json",
   "readings": [
     {
-      "title": "ef",
-      "artist": "feef",
-      "duration": 4,
-      "_id": "51c2dbbc-763a-4580-8d64-a3b260c0436d",
-      "playlistid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+      "code": "1",
+      "temp": "1",
+      "windSpeed": "1",
+      "pressure": "1",
+      "_id": "f77d76f3-eba2-47e9-a596-7e12bb57b2ea",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
     },
     {
-      "title": "e",
-      "artist": "e",
-      "duration": 4,
-      "_id": "5560cec9-7e09-4a7a-8e0f-3c544ade3b8f",
+      "code": "2",
+      "temp": "2",
+      "windSpeed": "2",
+      "pressure": "2",
+      "_id": "9c6e98d9-f278-4d06-986a-a56cfc98c596",
+      "stationid": "d457949e-00a4-4c67-931d-e4cda4e1bd07"
+    },
+    {
+      "code": "3",
+      "temp": "3",
+      "windSpeed": "3",
+      "pressure": "3",
+      "_id": "278d2b98-19c7-40fa-b347-bdc48b4e4114",
+      "stationid": "16b75dc8-927f-48ae-a052-0e42fbe5579e"
+    },
+    {
+      "code": "4",
+      "temp": "4",
+      "windSpeed": "4",
+      "pressure": "4",
+      "_id": "c4c142ac-5830-44b4-8510-f02e4c633822",
+      "stationid": "0a176ebb-097c-4a5d-a2e2-f8adef58007f"
+    },
+    {
+      "code": "5",
+      "temp": "5",
+      "windSpeed": "5",
+      "pressure": "5",
+      "_id": "356effd1-b1c9-4844-bfad-339d6404bcd9",
+      "stationid": "83196d19-1b6e-4467-ab21-da7e33309450"
+    },
+    {
+      "code": "8",
+      "temp": "8",
+      "windSpeed": "8",
+      "pressure": "8",
+      "_id": "a6b06f3a-2329-4267-982e-1c7b74fd1e3c",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "code": "4",
+      "temp": "4",
+      "windSpeed": "4",
+      "pressure": "4",
+      "_id": "48467289-2af4-474e-b6aa-16e2d3afc712",
+      "stationid": "d457949e-00a4-4c67-931d-e4cda4e1bd07"
+    },
+    {
+      "code": "4",
+      "temp": "4",
+      "windSpeed": "4",
+      "pressure": "4",
+      "_id": "1e6c1306-6dc7-44c1-a740-c9af0c8041d1",
+      "stationid": "16b75dc8-927f-48ae-a052-0e42fbe5579e"
+    },
+    {
+      "code": "4",
+      "temp": "4",
+      "windSpeed": "4",
+      "pressure": "4",
+      "_id": "ac758fda-6270-4d3d-bc20-d4e9d04e8401",
+      "stationid": "0a176ebb-097c-4a5d-a2e2-f8adef58007f"
+    },
+    {
+      "code": "4",
+      "temp": "4",
+      "windSpeed": "4",
+      "pressure": "4",
+      "_id": "8d755131-7ff3-41b4-abfd-88edca757603",
+      "stationid": "83196d19-1b6e-4467-ab21-da7e33309450"
+    },
+    {
+      "code": "6",
+      "temp": "6",
+      "windSpeed": "6",
+      "pressure": "6",
+      "_id": "122bdef7-f08a-4fd7-87ab-14d223cdd522",
+      "stationid": "d457949e-00a4-4c67-931d-e4cda4e1bd07"
+    },
+    {
+      "code": "1",
+      "temp": "2",
+      "windSpeed": "3",
+      "pressure": "4",
+      "_id": "bff2f3fe-9842-42bb-a19d-d7a2567e72b1",
+      "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "code": "8",
+      "temp": "8",
+      "windSpeed": "8",
+      "pressure": "8",
+      "_id": "8102723a-72ae-417b-8451-c132190c5b4e",
+      "stationid": "83196d19-1b6e-4467-ab21-da7e33309450"
+    },
+    {
+      "code": "8",
+      "temp": "8",
+      "windSpeed": "8",
+      "pressure": "8",
+      "_id": "d71d1c05-e45e-4083-a067-98e42a8edba3",
       "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
     }
   ]

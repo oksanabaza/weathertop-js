@@ -1,24 +1,46 @@
+{{!-- <div class="columns is-6 is-variable">
+  <div class="column card">latest code: {{code}}</div>
+  <div class="column card">latest temp: {{temp}}</div>
+  <div class="column card">latest wind speed: {{windSpeed}}</div>
+  <div class="column card">latest pressure: {{pressure}}</div>
+</div> --}}
+<div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+  <div class="column"><div class="card">latest code: {{code}}</div></div>
+  <div class="column"><div class="card">latest temp: {{temp}}°C</div></div>
+  <div class="column"><div class="card">latest temp: {{tempF}}°F</div></div>
+  <div class="column"><div class="card">latest wind speed: {{windSpeed}}</div></div>
+  <div class="column"><div class="card">latest pressure: {{pressure}}</div></div>
+</div>
+
 <table class="table is-fullwidth">
+
   <thead>
     <tr>
-      <th>Track</th>
-      <th>Artist</th>
-      <th>Duration</th>
+      <th>Code</th>
+      <th>Temperature</th>
+
+      <th>Wind Speed</th>
+      <th>Pressure</th>
     </tr>
   </thead>
   <tbody>
     {{#each station.readings}}
       <tr>
         <td>
-          {{title}}
+          {{code}}
         </td>
         <td>
-          {{artist}}
+          {{temp}}
+        </td>
+
+        <td>
+          {{windSpeed}}
         </td>
         <td>
-          {{duration}}
+          {{pressure}}
         </td>
       </tr>
     {{/each}}
+
   </tbody>
 </table>
