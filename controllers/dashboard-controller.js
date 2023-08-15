@@ -10,10 +10,42 @@ export const dashboardController = {
     const combinedData = sortedStations.map((station) => {
       const matchingReadings = readings.filter((reading) => reading.stationid === station._id);
       const lastMatchingReading = matchingReadings.length > 0 ? matchingReadings[matchingReadings.length - 1] : null;
+      let codeAction;
+      if (lastMatchingReading) {
+        switch (lastMatchingReading.code) {
+          case "100":
+            codeAction = "Clear";
+            break;
+          case "200":
+            codeAction = "Partial clouds";
+            break;
+          case "300":
+            codeAction = "Cloudy";
+            break;
+          case "400":
+            codeAction = "Light Showers";
+            break;
+          case "500":
+            codeAction = "Heavy Showers";
+            break;
+          case "600":
+            codeAction = "Rain";
+            break;
+          case "700":
+            codeAction = "Snow";
+            break;
+          case "800":
+            codeAction = "Thunder";
+            break;
+          default:
+            codeAction = "N/A";
+            break;
+        }
+      }
 
       return {
         ...station,
-        code: lastMatchingReading ? lastMatchingReading.code : null,
+        code: lastMatchingReading ? codeAction : null,
         temp: lastMatchingReading ? lastMatchingReading.temp : null,
         windSpeed: lastMatchingReading ? lastMatchingReading.windSpeed : null,
         pressure: lastMatchingReading ? lastMatchingReading.pressure : null,
