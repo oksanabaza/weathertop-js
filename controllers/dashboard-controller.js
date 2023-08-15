@@ -5,9 +5,9 @@ export const dashboardController = {
   async index(request, response) {
     const stations = await stationStore.getAllStations();
     const readings = await readingStore.getAllReadings();
+    const sortedStations = stations.slice().sort((a, b) => a.name.localeCompare(b.name));
 
-    // Combine stations and get the last code for each station
-    const combinedData = stations.map((station) => {
+    const combinedData = sortedStations.map((station) => {
       const matchingReadings = readings.filter((reading) => reading.stationid === station._id);
       const lastMatchingReading = matchingReadings.length > 0 ? matchingReadings[matchingReadings.length - 1] : null;
 

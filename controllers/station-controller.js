@@ -5,14 +5,16 @@ export const stationController = {
   async index(request, response) {
     const station = await stationStore.getStationById(request.params.id);
     let index = station.readings ? station.readings.length - 1 : null;
+    let item = station.readings[index];
+
     const viewData = {
       name: "station",
       station: station,
-      code: station.readings[index].code,
-      temp: station.readings[index].temp,
-      tempF: (station.readings[index].temp * 9) / 5 + 32,
-      windSpeed: station.readings[index].windSpeed,
-      pressure: station.readings[index].pressure,
+      code: item ? item.code : null,
+      temp: item ? item.temp : null,
+      tempF: item ? (item.temp * 9) / 5 + 32 : null,
+      windSpeed: item ? item.windSpeed : null,
+      pressure: item ? item.pressure : null,
     };
 
     response.render("station-view", viewData);
@@ -25,7 +27,6 @@ export const stationController = {
       temp: request.body.temp,
       windSpeed: request.body.windSpeed,
       pressure: request.body.pressure,
-      // duration: Number(request.body.duration),
     };
     console.log(`adding reading ${newReading.code}`);
     await readingStore.addReading(station._id, newReading);
