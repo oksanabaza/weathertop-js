@@ -1,9 +1,13 @@
 import { stationStore } from "../models/station-store.js";
 import { readingStore } from "../models/reading-store.js";
+import { accountsController } from "./accounts-controller.js";
 
 export const dashboardController = {
   async index(request, response) {
-    const stations = await stationStore.getAllStations();
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+
+    // const stations = await stationStore.getAllStations();
+    const stations = await stationStore.getStationsByUserId(loggedInUser._id);
     const readings = await readingStore.getAllReadings();
     const sortedStations = stations.slice().sort((a, b) => a.name.localeCompare(b.name));
 
@@ -155,10 +159,12 @@ export const dashboardController = {
   },
 
   async addStation(request, response) {
+    const loggedInUser = await accountsController.getLoggedInUser(request);
     const newStation = {
       name: request.body.name,
       latitude: request.body.latitude,
       longitude: request.body.longitude,
+      userid: loggedInUser._id,
     };
     console.log(`adding station ${newStation.name}`);
     await stationStore.addStation(newStation);
