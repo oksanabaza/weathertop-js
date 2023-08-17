@@ -72,9 +72,10 @@
                     <div class="card-bottom">
                         <div>
                     <div>{{temp}}°C</div>
-                    {{!-- <div>{{Ftemp}}°F</div> --}}
-                    {{!-- <div>Max: ${station.maxTemperature}</div>
-                    <div>Min: ${station.minTemperature}</div> --}}
+
+                    <div>{{tempF}}°F</div>
+                    <div>Max: {{maxTemp}}</div>
+                    <div>Min: {{minTemp}}</div>
                         </div>
                     {{!-- <div class="trend-icon">
                         <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
@@ -148,8 +149,8 @@
                             <div>Feels like: {{windChill}}°C</div>
                     
                       <div>{{windBft}}</div>
-                    {{!-- <div>Max: ${station.maxWindSpeed}</div>
-                    <div>Min: ${station.minWindSpeed}</div> --}}
+                    <div>Max: {{minWindSpeed}}</div>
+                    <div>Min: {{maxWindSpeed}}</div>
                         </div>
                     {{!-- <div class="trend-icon">
                         <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
@@ -167,8 +168,8 @@
                     <div class="card-bottom">
                         <div>
                     <div>{{pressure}} hpa</div>
-                    {{!-- <div>Max: ${station.maxPressure}</div>
-                    <div>Min: ${station.minPressure}</div> --}}
+                    <div>Max: {{maxPressure}}</div>
+                    <div>Min: {{minPressure}}</div>
                         </div>
                     {{!-- <div class="trend-icon">
                         <i class="fas fa-arrow-up has-text-danger" style="display: ${station.pressureTrend == 'Rising' ? 'inline' : 'none'}"></i>

@@ -144,6 +144,14 @@
       "pressure": "7",
       "_id": "9ae4f329-daf6-4921-be68-c2ce07629156",
       "stationid": "352490d6-20a7-45f7-87b6-38ff9384c5ad"
+    },
+    {
+      "code": "100",
+      "temp": "3",
+      "windSpeed": "1",
+      "pressure": "7",
+      "_id": "be98c35b-218f-416e-b07f-b63811a47755",
+      "stationid": "eb92ff29-f679-4f39-a9b9-dd6223b26c5a"
     }
   ]
 }
