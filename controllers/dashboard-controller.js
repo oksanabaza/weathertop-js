@@ -154,6 +154,7 @@ export const dashboardController = {
     const viewData = {
       title: "Station Dashboard",
       data: combinedData,
+      loggedInUser: loggedInUser.firstName ? loggedInUser.firstName : null,
     };
     response.render("dashboard-view", viewData);
   },
