@@ -1,17 +1,172 @@
-{{!-- <div class="columns is-6 is-variable">
-  <div class="column card">latest code: {{code}}</div>
-  <div class="column card">latest temp: {{temp}}</div>
-  <div class="column card">latest wind speed: {{windSpeed}}</div>
-  <div class="column card">latest pressure: {{pressure}}</div>
-</div> --}}
-<div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
-  <div class="column"><div class="card">latest code: {{code}}</div></div>
-  <div class="column"><div class="card">latest temp: {{temp}}°C</div></div>
-  <div class="column"><div class="card">latest temp: {{tempF}}°F</div></div>
-  <div class="column"><div class="card">latest wind speed: {{windSpeed}}</div></div>
-  <div class="column"><div class="card">latest pressure: {{pressure}}</div></div>
-</div>
+<div class="content box dashboard container">
+  <div>
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-header">
+            <h1>{{station.name}}</h1>
+            <img src="/images/location.png" />
+          </div>
+          <div class="media-content">
+            <p class="subtitle is-6">Lat: </p>
+            <p class="subtitle is-6">Lng:</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
 
+          <h1>Weather</h1>
+
+          <div class="weather-icon">
+            {{#if (eq code "Clear")}}
+              <img alt="clear" src="/images/sun.png" />
+            {{else if (eq code "Partial clouds")}}
+              <img alt="partial clouds" src="/images/cloud.png" />
+            {{else if (eq code "Cloudy")}}
+              <img alt="cloudy" src="/images/cloud-nosun.png" />
+            {{else if (eq code "Light Showers")}}
+              <img alt="light showers" src="/images/cloudy.png" />
+            {{else if (eq code "Heavy Showers")}}
+              <img alt="heavy showers" src="/images/rain.png" />
+            {{else if (eq code "Rain")}}
+              <img alt="rain" src="/images/rain.png" />
+            {{else if (eq code "Snow")}}
+              <img alt="snow" src="/images/snow.png" />
+            {{else if (eq code "Thunder")}}
+              <img alt="thunder" src="/images/lightning.png" />
+            {{else}}
+              N/A
+            {{/if}}
+          </div>
+          {{! <div class="media-content">
+        <p class="subtitle is-6">Lat: </p>
+        <p class="subtitle is-6">Lng:</p>
+      </div> }}
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-header">
+            <h1>Temp</h1>
+            <img src="/images/temp.png" />
+          </div>
+          <div class="card-bottom">
+            <div>
+              <div>{{temp}}°C</div>
+              <div>{{tempF}}°F</div>
+              {{!-- <div>{{Ftemp}}°F</div> --}}
+              {{! <div>Max: ${station.maxTemperature}</div>
+                    <div>Min: ${station.minTemperature}</div> }}
+            </div>
+            {{! <div class="trend-icon">
+                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
+                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.trend == 'Dropping' ? 'inline' : 'none'}"></i>
+                    </div> }}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-header">
+            <h1>Wind</h1>
+            <img src="/images/wind-image.png" />
+          </div>
+          <div class="card-bottom">
+            <div>
+
+              <div>
+                {{! #{if station.windCompass == 'N'} }}
+                {{#if (eq windDirection "N")}}
+                  <div>North</div>
+                {{else if (eq windDirection "NNE")}}
+                  {{! #{/if} #{if station.windCompass == 'NNE'} }}
+                  <div>North North East</div>
+                  {{! #{/if} #{if station.windCompass == 'NE'} }}
+                {{else if (eq windDirection "NE")}}
+                  <div>North East</div>
+                  {{! #{/if} #{if station.windCompass == 'ENE'} }}
+                {{else if (eq windDirection "ENE")}}
+                  <div>East North East</div>
+                  {{! #{/if} #{if station.windCompass == 'E'} }}
+                {{else if (eq windDirection "E")}}
+                  <div>East</div>
+                {{else if (eq windDirection "ESE")}}
+                  {{! #{/if} #{if station.windCompass == 'ESE'} }}
+                  <div>East South East</div>
+                  {{! #{/if} #{if station.windCompass == 'SE'} }}
+                {{else if (eq windDirection "SE")}}
+                  <div>South East</div>
+                  {{! #{/if} #{if station.windCompass == 'SSE'} }}
+                {{else if (eq windDirection "SSE")}}
+                  <div>South South East</div>
+                  {{! #{/if} #{if station.windCompass == 'S'} }}
+                {{else if (eq windDirection "S")}}
+                  <div>South</div>
+                  {{! #{/if} #{if station.windCompass == 'SSW'} }}
+                {{else if (eq windDirection "SSW")}}
+                  <div>South South West</div>
+                  {{! #{/if} #{if station.windCompass == 'SW'} }}
+                {{else if (eq windDirection "SW")}}
+                  <div>South West</div>
+                {{else if (eq windDirection "WSW")}}
+                  {{! #{/if} #{if station.windCompass == 'WSW'} }}
+                  <div>West South West</div>
+                  {{! #{/if} #{if station.windCompass == 'W'} }}
+                {{else if (eq windDirection "W")}}
+                  <div>West</div>
+                  {{! #{/if} #{if station.windCompass == 'WNW'} }}
+                {{else if (eq windDirection "WNW")}}
+                  <div>West North West</div>
+                  {{! #{/if} #{if station.windCompass == 'NW'} }}
+                {{else if (eq windDirection "NW")}}
+                  <div>North West</div>
+                  {{! #{/if} #{if station.windCompass == 'NNW'} }}
+                {{else if (eq windDirection "NNW")}}
+                  <div>North North West</div>
+                {{else}}
+                  N/A
+                {{/if}}
+              </div>
+              {{!-- <div>Feels like: {{windChill}}°C</div> --}}
+
+              <div>{{windBft}}</div>
+              {{!-- <div>{{windDirection}}</div> --}}
+              {{! <div>Max: ${station.maxWindSpeed}</div>
+                    <div>Min: ${station.minWindSpeed}</div> }}
+            </div>
+            {{! <div class="trend-icon">
+                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
+                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.trend == 'Dropping' ? 'inline' : 'none'}"></i>
+                    </div> }}
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-header">
+            <h1>Pressure</h1>
+            <img src="/images/press-icon.png" />
+          </div>
+          <div class="card-bottom">
+            <div>
+              <div>{{pressure}} hpa</div>
+              {{! <div>Max: ${station.maxPressure}</div>
+                    <div>Min: ${station.minPressure}</div> }}
+            </div>
+            {{! <div class="trend-icon">
+                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.pressureTrend == 'Rising' ? 'inline' : 'none'}"></i>
+                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.pressureTrend == 'Dropping' ? 'inline' : 'none'}"></i>
+                    </div> }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 <table class="table is-fullwidth">
 
   <thead>

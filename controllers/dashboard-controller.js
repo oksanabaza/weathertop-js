@@ -42,12 +42,95 @@ export const dashboardController = {
             break;
         }
       }
+      // let wBft;
+      // if (lastMatchingReading && lastMatchingReading.windSpeed !== null) {
+      //   if (lastMatchingReading.windSpeed === 1) {
+      //     wBft = "Calm";
+      //   }
+      //   if (lastMatchingReading.windSpeed > 1 && lastMatchingReading.windSpeed <= 5) {
+      //     wBft = "Light Air";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 6 && lastMatchingReading.windSpeed <= 11) {
+      //     wBft = "Light Breeze";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 12 && lastMatchingReading.windSpeed <= 19) {
+      //     wBft = "Gentle Breeze";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 20 && lastMatchingReading.windSpeed <= 28) {
+      //     wBft = "Moderate Breeze";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 29 && lastMatchingReading.windSpeed <= 38) {
+      //     wBft = "Fresh Breeze";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 39 && lastMatchingReading.windSpeed <= 49) {
+      //     wBft = "Strong Breeze";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 50 && lastMatchingReading.windSpeed <= 61) {
+      //     wBft = "Near Gale";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 62 && lastMatchingReading.windSpeed <= 74) {
+      //     wBft = "Gale";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 75 && lastMatchingReading.windSpeed <= 88) {
+      //     wBft = "Severe Gale";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 89 && lastMatchingReading.windSpeed <= 102) {
+      //     wBft = "Strong storm";
+      //   }
+      //   if (lastMatchingReading.windSpeed >= 103 && lastMatchingReading.windSpeed <= 117) {
+      //     wBft = "Violent storm";
+      //   } else {
+      //     wBft = "";
+      //   }
+      // }
+      let wBft;
+      if (lastMatchingReading && lastMatchingReading.windSpeed !== null) {
+        const windSpeed = lastMatchingReading.windSpeed;
+
+        if (windSpeed === 1) {
+          wBft = "Calm";
+        } else if (windSpeed > 1 && windSpeed <= 5) {
+          wBft = "Light Air";
+        } else if (windSpeed <= 11) {
+          wBft = "Light Breeze";
+        } else if (windSpeed <= 19) {
+          wBft = "Gentle Breeze";
+        } else if (windSpeed <= 28) {
+          wBft = "Moderate Breeze";
+        } else if (windSpeed <= 38) {
+          wBft = "Fresh Breeze";
+        } else if (windSpeed <= 49) {
+          wBft = "Strong Breeze";
+        } else if (windSpeed <= 61) {
+          wBft = "Near Gale";
+        } else if (windSpeed <= 74) {
+          wBft = "Gale";
+        } else if (windSpeed <= 88) {
+          wBft = "Severe Gale";
+        } else if (windSpeed <= 102) {
+          wBft = "Strong storm";
+        } else if (windSpeed <= 117) {
+          wBft = "Violent storm";
+        } else {
+          wBft = "N/A";
+        }
+      }
+      let wChill;
+      wChill =
+        lastMatchingReading && lastMatchingReading.windSpeed !== null
+          ? 13.12 +
+            0.6215 * lastMatchingReading.temp -
+            11.37 * Math.pow(lastMatchingReading.windSpeed, 0.16) +
+            0.3965 * lastMatchingReading.temp * Math.pow(lastMatchingReading.windSpeed, 0.16)
+          : "N/A";
 
       return {
         ...station,
         code: lastMatchingReading ? codeAction : "N/A",
         temp: lastMatchingReading ? lastMatchingReading.temp : "N/A",
         windSpeed: lastMatchingReading ? lastMatchingReading.windSpeed : "N/A",
+        windBft: lastMatchingReading ? wBft : "N/A",
+        windChill: lastMatchingReading ? Math.round(wChill) : "N/A",
         pressure: lastMatchingReading ? lastMatchingReading.pressure : "N/A",
       };
     });
