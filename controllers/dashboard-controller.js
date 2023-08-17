@@ -9,6 +9,9 @@ export const dashboardController = {
 
     const combinedData = sortedStations.map((station) => {
       const matchingReadings = readings.filter((reading) => reading.stationid === station._id);
+      const sortedReadingsByTemp = readings ? matchingReadings.sort((a, b) => a.temp - b.temp) : null;
+      const sortedReadingsByWind = readings ? matchingReadings.sort((a, b) => a.windSpeed - b.windSpeed) : null;
+      const sortedReadingsByPressure = readings ? matchingReadings.sort((a, b) => a.pressure - b.pressure) : null;
       const lastMatchingReading = matchingReadings.length > 0 ? matchingReadings[matchingReadings.length - 1] : null;
       let codeAction;
       if (lastMatchingReading) {
@@ -128,10 +131,19 @@ export const dashboardController = {
         ...station,
         code: lastMatchingReading ? codeAction : "N/A",
         temp: lastMatchingReading ? lastMatchingReading.temp : "N/A",
+        tempF: lastMatchingReading ? (lastMatchingReading.temp * 9) / 5 + 32 : "N/A",
         windSpeed: lastMatchingReading ? lastMatchingReading.windSpeed : "N/A",
         windBft: lastMatchingReading ? wBft : "N/A",
         windChill: lastMatchingReading ? Math.round(wChill) : "N/A",
         pressure: lastMatchingReading ? lastMatchingReading.pressure : "N/A",
+        minTemp: lastMatchingReading ? sortedReadingsByTemp[0].temp : "N/A",
+        maxTemp: lastMatchingReading ? sortedReadingsByTemp[sortedReadingsByTemp.length - 1].temp : "N/A",
+        minWindSpeed: lastMatchingReading ? sortedReadingsByWind[0].windSpeed : "N/A",
+        maxWindSpeed: lastMatchingReading ? sortedReadingsByWind[sortedReadingsByTemp.length - 1].windSpeed : "N/A",
+        minPressure: lastMatchingReading ? sortedReadingsByPressure[0].pressure : "N/A",
+        maxPressure: lastMatchingReading
+          ? sortedReadingsByPressure[sortedReadingsByPressure.length - 1].pressure
+          : "N/A",
       };
     });
 
@@ -145,6 +157,8 @@ export const dashboardController = {
   async addStation(request, response) {
     const newStation = {
       name: request.body.name,
+      latitude: request.body.latitude,
+      longitude: request.body.longitude,
     };
     console.log(`adding station ${newStation.name}`);
     await stationStore.addStation(newStation);
