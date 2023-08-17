@@ -145,6 +145,8 @@ export const dashboardController = {
   async addStation(request, response) {
     const newStation = {
       name: request.body.name,
+      latitude: request.body.latitude,
+      longitude: request.body.longitude,
     };
     console.log(`adding station ${newStation.name}`);
     await stationStore.addStation(newStation);

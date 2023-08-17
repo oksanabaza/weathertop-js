@@ -1,4 +1,4 @@
-<form action="/dashboard/addstation" method="POST">
+{{! <form action="/dashboard/addstation" method="POST">
   <div class="field">
     <label class="label">Station Name</label>
     <input class="input" type="text" placeholder="Enter station name" name="name" />
@@ -6,4 +6,33 @@
   <div class="field mt-4">
     <button class="button is-info">Add Station</button>
   </div>
-</form>
+</form> }}
+<div class="container content box">
+  <form action="/dashboard/addstation" method="POST">
+    <div class="addstation-wrapper">
+      <div class="field">
+        <label class="label">Station Name</label>
+        <div class="control">
+          <input class="input" placeholder="Station name" type="text" name="name" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Latitude</label>
+        <div class="control">
+          <input class="input" placeholder="Latitude" name="latitude" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Longitude</label>
+        <div class="control">
+          <input class="input" placeholder="Longitude" name="longitude" />
+        </div>
+      </div>
+    </div>
+
+    <div class="field mt-4" id="add-station">
+      <button class="button is-info">Add Station</button>
+    </div>
+  </form>
+</div>

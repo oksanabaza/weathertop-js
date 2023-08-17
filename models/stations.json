@@ -28,6 +28,12 @@
     {
       "name": "jj",
       "_id": "b1812b83-95ed-4149-9258-e72b2e21cba0"
+    },
+    {
+      "name": "Y-station",
+      "latitude": "13.45",
+      "longitude": "45.78",
+      "_id": "eb92ff29-f679-4f39-a9b9-dd6223b26c5a"
     }
   ]
 }
