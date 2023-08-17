@@ -6,6 +6,11 @@ export const dashboardController = {
   async index(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
 
+    // Check if loggedInUser exists and has the required properties
+    if (!loggedInUser || !loggedInUser._id || !loggedInUser.firstName) {
+      response.redirect("/login"); // Redirect to login page
+      return;
+    }
     // const stations = await stationStore.getAllStations();
     const stations = await stationStore.getStationsByUserId(loggedInUser._id);
     const readings = await readingStore.getAllReadings();
@@ -154,7 +159,7 @@ export const dashboardController = {
     const viewData = {
       title: "Station Dashboard",
       data: combinedData,
-      loggedInUser: loggedInUser.firstName ? loggedInUser.firstName : null,
+      loggedInUser: loggedInUser.firstName,
     };
     response.render("dashboard-view", viewData);
   },
