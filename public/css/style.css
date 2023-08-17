@@ -1,0 +1,284 @@
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard {
+  display: grid;
+}
+
+a {
+  color: #faa41a;
+}
+
+a:hover {
+  color: #302850;
+  background-color: #faa41a;
+}
+
+.nav {
+  background-color: #302850;
+}
+
+.navbar.is-info {
+  color: #faa41a;
+  background-color: #302850;
+}
+
+.navbar-brand {
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+}
+
+.nav {
+  margin-bottom: 30px;
+}
+
+footer {
+  margin-top: 30px;
+}
+
+#navbarMenu a {
+  color: #faa41a;
+  background-color: #302850;
+}
+
+#navbarMenu a:hover {
+  color: #302850;
+  background-color: #faa41a;
+}
+
+.button.is-info {
+  color: #302850;
+  background-color: #faa41a !important;
+}
+
+.button.is-info:hover {
+  color: #faa41a !important;
+  background-color: #302850 !important;
+}
+
+.hero .hero-body {
+  color: #faa41a;
+  background-color: #302850;
+}
+
+.hero.is-info .title {
+  color: #faa41a;
+}
+.hero.is-info.is-small {
+  color: #faa41a;
+  background-color: #f5f5f5;
+}
+.header-wrapper {
+  background-color: #302850;
+}
+.button.is-info {
+  background-color: #3e8ed0;
+  color: black;
+}
+body {
+  background-color: #f5f5f5;
+}
+
+.login-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 24px;
+  color: #6c63ff;
+  margin-bottom: 30px;
+}
+
+.login-card {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-divider {
+  margin: 20px 0;
+  text-align: center;
+  color: #6c63ff;
+  font-size: 14px;
+  position: relative;
+}
+
+.form-divider::before,
+.form-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  border-top: 1px solid #6c63ff;
+}
+
+.form-divider::before {
+  right: 0;
+}
+
+.form-divider::after {
+  left: 0;
+}
+
+.form-divider span {
+  position: relative;
+  background-color: #f5f5f5;
+  padding: 0 10px;
+}
+
+.login-button {
+  margin-top: 20px;
+  background-color: #f0932b;
+  border-color: #f0932b;
+  color: #ffffff;
+}
+
+.login-button:hover {
+  background-color: #f2750d;
+  border-color: #f2750d;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #888888;
+  font-size: 12px;
+}
+
+.signup-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signup-footer .button {
+  color: #302850;
+  background-color: #faa41a;
+}
+
+.signup-footer .button:hover {
+  color: #faa41a;
+  background-color: #302850;
+}
+
+.addstation-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addstation-wrapper .field {
+  width: 30%;
+}
+
+.card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.card {
+  background-color: #302850;
+  color: #faa41a;
+}
+
+.card h1 {
+  color: #faa41a;
+}
+
+.card p {
+  color: #faa41a;
+}
+
+.back-btn {
+  color: #faa41a;
+  margin: 20px 0;
+}
+
+.back-btn a:hover {
+  background-color: transparent;
+}
+
+a#dashboard.navbar-item.is-active {
+  color: #302850;
+  background-color: #faa41a;
+}
+
+a#admin.navbar-item.is-active {
+  color: #302850;
+  background-color: #faa41a;
+}
+
+a#about.navbar-item.is-active {
+  color: #302850;
+  background-color: #faa41a;
+}
+
+.navbar-menu {
+  padding: 0;
+}
+
+.card-content h1 {
+  text-size-adjust: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.5rem 0;
+}
+.card-content {
+  display: grid;
+  grid-gap: 20px;
+}
+.icon {
+  padding: 24px 0 24px 0;
+}
+
+.icon a {
+  padding: 5px;
+}
+
+.card-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.card-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.trend-icon {
+  display: grid;
+  justify-content: center;
+}
+.weather-icon {
+  display: grid;
+}
+.weather-icon img {
+  width: 30%;
+}
+
+#add-station button {
+  color: #302850;
+  background-color: #faa41a;
+}
+#add-reading button {
+  color: #302850;
+  background-color: #faa41a;
+}
+
+.navbar-brand:hover {
+  color: #faa41a;
+  background-color: #302850;
+}
+.member-submit-btn {
+  color: #302850;
+  background-color: #faa41a;
+}
+.member-submit-btn:hover {
+  color: #faa41a;
+  background-color: #302850;
+}
