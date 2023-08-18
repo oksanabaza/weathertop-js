@@ -176,4 +176,20 @@ export const dashboardController = {
     await stationStore.addStation(newStation);
     response.redirect("/dashboard");
   },
+  async deleteStation(request, response) {
+    const loggedInUser = await accountsController.getLoggedInUser(request); // Use 'req' instead of 'request'
+
+    // Ensure that the user is authorized to delete the station
+    const stationId = request.params.id; // Use 'params.id' to get the station ID
+    const stations = await stationStore.getStationsByUserId(loggedInUser._id);
+
+    // Check if the station to be deleted belongs to the logged-in user
+    // const stationToDelete = stations.find((station) => station._id === stationId);
+    // if (!stationToDelete) {
+    //   return response.status(403).send("Unauthorized"); // User doesn't own this station
+    // }
+
+    // Perform the deletion
+    await stationStore.deleteStationById(stationId);
+  },
 };

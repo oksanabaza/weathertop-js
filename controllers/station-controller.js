@@ -1,8 +1,17 @@
 import { stationStore } from "../models/station-store.js";
 import { readingStore } from "../models/reading-store.js";
+import { accountsController } from "./accounts-controller.js";
 
 export const stationController = {
   async index(request, response) {
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+
+    // Check if loggedInUser exists and has the required properties
+    if (!loggedInUser || !loggedInUser._id || !loggedInUser.firstName) {
+      response.redirect("/login"); // Redirect to login page
+      return;
+    }
+
     const station = await stationStore.getStationById(request.params.id);
     let index = station.readings ? station.readings.length - 1 : null;
     let item = station.readings[index];
@@ -120,6 +129,7 @@ export const stationController = {
       windDirection: item ? windCompass : null,
       windBft: item ? wBft : null,
       pressure: item ? item.pressure : null,
+      loggedInUser: loggedInUser.firstName,
     };
 
     response.render("station-view", viewData);
@@ -132,6 +142,7 @@ export const stationController = {
       temp: request.body.temp,
       windSpeed: request.body.windSpeed,
       pressure: request.body.pressure,
+      date: new Date().toLocaleString(),
     };
     console.log(`adding reading ${newReading.code}`);
     await readingStore.addReading(station._id, newReading);

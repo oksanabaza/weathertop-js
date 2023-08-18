@@ -185,12 +185,46 @@
          </a>
       </span>
         <span class="icon">
-      <a href="" >
+      {{!-- <a href="/station/{{_id}}/deletestation"method="post" >
       <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
-      </a>
+      </a> --}}
+<button type="button" class="delete-button" onclick="deleteStation('{{_id}}')">
+                <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
+            </button>
+
+
+
+
+
+
+
       </span>
     </div>
 </div>
 {{/each}}
 
 {{> add-station}}
+<script>
+function deleteStation(stationId) {
+   fetch(`/station/${stationId}/deletestation`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                response.redirect("/dashboard")
+                window.location.href = "/dashboard";
+                // Redirect or update the UI as needed
+                
+            } else {
+                console.error("Error deleting station");
+            }
+        })
+        .catch(error => {
+            console.error("Error deleting station:", error);
+        });
+     window.location.href = "/dashboard";
+}
+</script>

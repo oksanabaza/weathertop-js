@@ -54,25 +54,18 @@
       "_id": "b2e208a3-b217-4f87-8778-ed2d91f09d0b"
     },
     {
-      "name": "admin",
-      "latitude": "13.45",
-      "longitude": "45.78",
-      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
-      "_id": "b693bad4-98ef-417b-a3f6-6c672f93ab41"
-    },
-    {
-      "name": "admin2",
-      "latitude": "",
-      "longitude": "45.78",
-      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
-      "_id": "b6c565a3-f074-4d39-a598-ccaab5476018"
-    },
-    {
       "name": "test",
       "latitude": "",
       "longitude": "45.78",
       "userid": "e096ec4b-f64a-4153-a6e0-e64a6e1324f5",
       "_id": "a32a5027-5bc6-4486-bf9e-2a11df484498"
+    },
+    {
+      "name": "admin",
+      "latitude": "13.45",
+      "longitude": "45.78",
+      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
+      "_id": "17881ea0-0eed-43c9-826e-c25b6762be43"
     }
   ]
 }
