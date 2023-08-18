@@ -20,6 +20,7 @@
               {{! <div class="navbar-item"> }}
               <div class="buttons">
                   {{#if loggedInUser}}
+                  <a id="user" class="button" href="/user"> Welcome, {{loggedInUser.firstName}} </a>
                 <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
                 <a id="about" class="button" href="/about"> About </a>
                   {{else}}

@@ -16,6 +16,7 @@
     "express-session": "^1.17.3",
     "fs-extra": "^11.1.0",
     "lowdb": "^5.1.0",
+    "method-override": "^3.0.0",
     "uuid": "^9.0.0"
   },
   "repository": {

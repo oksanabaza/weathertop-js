@@ -3,6 +3,8 @@ import { dashboardController } from "./controllers/dashboard-controller.js";
 import { stationController } from "./controllers/station-controller.js";
 import { aboutController } from "./controllers/about-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
+import { userController } from "./controllers/user-controller.js";
+import { userStore } from "./models/user-store.js";
 
 export const router = express.Router();
 
@@ -18,5 +20,22 @@ router.post("/dashboard/addstation", dashboardController.addStation);
 router.get("/station/:id", stationController.index);
 router.post("/station/:id/addreading", stationController.addReading);
 router.get("/about", aboutController.index);
+
+router.get("/user", userController.index);
+router.put("/user/:id/edit", async (req, res) => {
+  const userId = req.params.id;
+  const updatedUserData = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password,
+  };
+  try {
+    const updatedUser = await userStore.updateUserInfo(userId, updatedUserData);
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
 
 router.delete("/station/:id/deletestation", dashboardController.deleteStation);

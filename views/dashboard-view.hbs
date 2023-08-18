@@ -1,26 +1,6 @@
-{{!-- {{> menu active="dashboard"}}
-
-<section class="section">
-  {{> list-stations}}
-  
-  {{#each data}}
-  <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
-    <div class="column"><div class="card"><h2 class="title">{{name}}</h2></div></div>
-  <div class="column"><div class="card">{{code}}</div></div>
-  <div class="column"><div class="card">Temperature: {{temp}}°C</div></div>
-  <div class="column"><div class="card">Wind chill: {{windChill}}°C </div></div> 
-  <div class="column"><div class="card">Wind BFT: {{windBft}}</div></div>
-  <div class="column"><div class="card">Pressure: {{pressure}} hpa</div></div>
-</div>
-
-{{/each}}
-
-{{> add-station}}
-</section> --}}
 {{> menu active="dashboard"}}
 {{> list-stations}}
-  
-  {{#each data}}
+{{#each data}}
 <div class="content box dashboard container">
     <div>
         <div class="card-wrapper">
@@ -192,13 +172,6 @@
 <a type="button" class="delete-button" onclick="deleteStation('{{_id}}')">
                 <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
             </a>
-
-
-
-
-
-
-
       </span>
     </div>
 </div>
@@ -217,7 +190,7 @@ function deleteStation(stationId) {
             if (response.ok) {
                 response.redirect("/dashboard")
                 window.location.href = "/dashboard";
-                // Redirect or update the UI as needed
+             
                 
             } else {
                 console.error("Error deleting station");
