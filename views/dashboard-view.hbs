@@ -76,11 +76,14 @@
                     <div>{{tempF}}°F</div>
                     <div>Max: {{maxTemp}}</div>
                     <div>Min: {{minTemp}}</div>
+
                         </div>
-                    {{!-- <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.trend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> --}}
+                  <div class="trend-icon">
+
+    <i class="fas fa-arrow-up has-text-danger" style="display: {{#if (eq  tempTrend 'Rising')}}inline{{else}}none{{/if}}"></i>
+    <i class="fas fa-arrow-down has-text-success" style="display: {{#if (eq  tempTrend 'Dropping')}}inline{{else}}none{{/if}}"></i>
+</div>
+
                     </div>
                 </div>
             </div>
@@ -152,10 +155,10 @@
                     <div>Max: {{minWindSpeed}}</div>
                     <div>Min: {{maxWindSpeed}}</div>
                         </div>
-                    {{!-- <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.trend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> --}}
+                    <div class="trend-icon">
+                           <i class="fas fa-arrow-up has-text-danger" style="display: {{#if (eq  windTrend 'Rising')}}inline{{else}}none{{/if}}"></i>
+    <i class="fas fa-arrow-down has-text-success" style="display: {{#if (eq  windTrend 'Dropping')}}inline{{else}}none{{/if}}"></i>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -171,10 +174,10 @@
                     <div>Max: {{maxPressure}}</div>
                     <div>Min: {{minPressure}}</div>
                         </div>
-                    {{!-- <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.pressureTrend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.pressureTrend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> --}}
+                    <div class="trend-icon">
+                           <i class="fas fa-arrow-up has-text-danger" style="display: {{#if (eq  pressureTrend 'Rising')}}inline{{else}}none{{/if}}"></i>
+    <i class="fas fa-arrow-down has-text-success" style="display: {{#if (eq  pressureTrend 'Dropping')}}inline{{else}}none{{/if}}"></i>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -185,12 +188,10 @@
          </a>
       </span>
         <span class="icon">
-      {{!-- <a href="/station/{{_id}}/deletestation"method="post" >
-      <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
-      </a> --}}
-<button type="button" class="delete-button" onclick="deleteStation('{{_id}}')">
+
+<a type="button" class="delete-button" onclick="deleteStation('{{_id}}')">
                 <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
-            </button>
+            </a>
 
 
 

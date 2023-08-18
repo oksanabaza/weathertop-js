@@ -11,8 +11,55 @@ export const stationController = {
       response.redirect("/login"); // Redirect to login page
       return;
     }
-
     const station = await stationStore.getStationById(request.params.id);
+    // //defining trands
+    // let stationTrend;
+    // if (station.length >= 3) {
+    //   let lastReading = station.readings.length - 1;
+    //   let secondLastReading = station.readings.length - 2;
+    //   let thirdLastReading = station.readings.length - 3;
+
+    //   if (lastReading.temp > secondLastReading.temp && secondLastReading.temp > thirdLastReading.temp) {
+    //     station.trend = "Rising";
+    //   } else if (lastReading.temp < secondLastReading.temp && secondLastReading.temp < thirdLastReading.temp) {
+    //     station.trend = "Dropping";
+    //   } else {
+    //     station.trend = "Unchanged";
+    //   }
+
+    //   // Wind trends
+    //   if (
+    //     lastReading.windSpeed > secondLastReading.windSpeed &&
+    //     secondLastReading.windSpeed > thirdLastReading.windSpeed
+    //   ) {
+    //     stationTrend = "Rising";
+    //   } else if (
+    //     lastReading.windSpeed < secondLastReading.windSpeed &&
+    //     secondLastReading.windSpeed < thirdLastReading.windSpeed
+    //   ) {
+    //     stationTrend = "Dropping";
+    //   } else {
+    //     stationTrend = "Unchanged";
+    //   }
+
+    //   // Pressure trends
+    //   if (lastReading.pressure > secondLastReading.pressure && secondLastReading.pressure > thirdLastReading.pressure) {
+    //     station.pressureTrend = "Rising";
+    //   } else if (
+    //     lastReading.pressure < secondLastReading.pressure &&
+    //     secondLastReading.pressure < thirdLastReading.pressure
+    //   ) {
+    //     station.pressureTrend = "Dropping";
+    //   } else {
+    //     station.pressureTrend = "Unchanged";
+    //   }
+    // } else {
+    //   station.trend = "N/A";
+    //   station.windTrend = "N/A";
+    //   station.pressureTrend = "N/A";
+    // }
+    // ///////////////////////////////
+
     let index = station.readings ? station.readings.length - 1 : null;
     let item = station.readings[index];
     let wBft;
@@ -130,6 +177,7 @@ export const stationController = {
       windBft: item ? wBft : null,
       pressure: item ? item.pressure : null,
       loggedInUser: loggedInUser.firstName,
+      // trend: stationTrend,
     };
 
     response.render("station-view", viewData);
