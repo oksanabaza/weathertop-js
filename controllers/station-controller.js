@@ -176,7 +176,7 @@ export const stationController = {
       windDirection: item ? windCompass : null,
       windBft: item ? wBft : null,
       pressure: item ? item.pressure : null,
-      loggedInUser: loggedInUser.firstName,
+      loggedInUser: loggedInUser,
       // trend: stationTrend,
     };
 
