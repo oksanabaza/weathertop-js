@@ -196,4 +196,16 @@ export const stationController = {
     await readingStore.addReading(station._id, newReading);
     response.redirect("/station/" + station._id);
   },
+  async deleteReading(request, response) {
+    let stationId = request.params.stationid;
+    const readingId = request.params._id;
+    console.log(`Updating reading ${readingId} from station ${stationId}`);
+    await readingStore.deleteReading(readingId);
+    // response.redirect(303, "/station/" + stationId);
+    console.log(request.body);
+
+    console.log(request.params);
+    response.redirect(303, "/station/" + stationId);
+    // response.redirect(303, "/dashboard");
+  },
 };

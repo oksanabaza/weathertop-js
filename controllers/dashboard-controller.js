@@ -286,10 +286,8 @@ export const dashboardController = {
   },
   async deleteStation(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
-
     const stationId = request.params.id;
-    const stations = await stationStore.getStationsByUserId(loggedInUser._id);
-
     await stationStore.deleteStationById(stationId);
+    response.redirect(303, "/dashboard");
   },
 };

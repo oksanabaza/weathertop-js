@@ -5,6 +5,7 @@ import { aboutController } from "./controllers/about-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { userController } from "./controllers/user-controller.js";
 import { userStore } from "./models/user-store.js";
+import { readingStore } from "./models/reading-store.js";
 
 export const router = express.Router();
 
@@ -39,3 +40,6 @@ router.put("/user/:id/edit", async (req, res) => {
 });
 
 router.delete("/station/:id/deletestation", dashboardController.deleteStation);
+// router.delete("/station/:stationId/deletereading/:readingId", readingStore.getReadingById);
+
+router.delete("/station/:stationid/deletereading/:_id", stationController.deleteReading);

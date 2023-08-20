@@ -39,10 +39,7 @@
               N/A
             {{/if}}
           </div>
-          {{! <div class="media-content">
-        <p class="subtitle is-6">Lat: </p>
-        <p class="subtitle is-6">Lng:</p>
-      </div> }}
+
         </div>
       </div>
       <div class="card">
@@ -55,14 +52,7 @@
             <div>
               <div>{{temp}}°C</div>
               <div>{{tempF}}°F</div>
-              {{!-- <div>{{Ftemp}}°F</div> --}}
-              {{! <div>Max: ${station.maxTemperature}</div>
-                    <div>Min: ${station.minTemperature}</div> }}
             </div>
-            {{! <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.trend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> }}
           </div>
         </div>
       </div>
@@ -76,69 +66,48 @@
             <div>
 
               <div>
-                {{! #{if station.windCompass == 'N'} }}
                 {{#if (eq windDirection "N")}}
                   <div>North</div>
                 {{else if (eq windDirection "NNE")}}
-                  {{! #{/if} #{if station.windCompass == 'NNE'} }}
                   <div>North North East</div>
-                  {{! #{/if} #{if station.windCompass == 'NE'} }}
                 {{else if (eq windDirection "NE")}}
                   <div>North East</div>
-                  {{! #{/if} #{if station.windCompass == 'ENE'} }}
                 {{else if (eq windDirection "ENE")}}
                   <div>East North East</div>
-                  {{! #{/if} #{if station.windCompass == 'E'} }}
                 {{else if (eq windDirection "E")}}
                   <div>East</div>
                 {{else if (eq windDirection "ESE")}}
-                  {{! #{/if} #{if station.windCompass == 'ESE'} }}
                   <div>East South East</div>
-                  {{! #{/if} #{if station.windCompass == 'SE'} }}
                 {{else if (eq windDirection "SE")}}
                   <div>South East</div>
-                  {{! #{/if} #{if station.windCompass == 'SSE'} }}
                 {{else if (eq windDirection "SSE")}}
                   <div>South South East</div>
-                  {{! #{/if} #{if station.windCompass == 'S'} }}
                 {{else if (eq windDirection "S")}}
                   <div>South</div>
-                  {{! #{/if} #{if station.windCompass == 'SSW'} }}
                 {{else if (eq windDirection "SSW")}}
                   <div>South South West</div>
-                  {{! #{/if} #{if station.windCompass == 'SW'} }}
                 {{else if (eq windDirection "SW")}}
                   <div>South West</div>
                 {{else if (eq windDirection "WSW")}}
-                  {{! #{/if} #{if station.windCompass == 'WSW'} }}
                   <div>West South West</div>
-                  {{! #{/if} #{if station.windCompass == 'W'} }}
                 {{else if (eq windDirection "W")}}
                   <div>West</div>
-                  {{! #{/if} #{if station.windCompass == 'WNW'} }}
                 {{else if (eq windDirection "WNW")}}
                   <div>West North West</div>
-                  {{! #{/if} #{if station.windCompass == 'NW'} }}
                 {{else if (eq windDirection "NW")}}
                   <div>North West</div>
-                  {{! #{/if} #{if station.windCompass == 'NNW'} }}
                 {{else if (eq windDirection "NNW")}}
                   <div>North North West</div>
                 {{else}}
                   N/A
                 {{/if}}
               </div>
-              {{!-- <div>Feels like: {{windChill}}°C</div> --}}
+
 
               <div>{{windBft}}</div>
-              {{!-- <div>{{windDirection}}</div> --}}
-              {{! <div>Max: ${station.maxWindSpeed}</div>
-                    <div>Min: ${station.minWindSpeed}</div> }}
+
             </div>
-            {{! <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.trend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> }}
+
           </div>
         </div>
       </div>
@@ -151,13 +120,7 @@
           <div class="card-bottom">
             <div>
               <div>{{pressure}} hpa</div>
-              {{! <div>Max: ${station.maxPressure}</div>
-                    <div>Min: ${station.minPressure}</div> }}
-            </div>
-            {{! <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.pressureTrend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.pressureTrend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> }}
+
           </div>
         </div>
       </div>
@@ -174,10 +137,9 @@
       <th>Date</th>
       <th>Code</th>
       <th>Temperature</th>
-
       <th>Wind Speed</th>
       <th>Pressure</th>
-
+      <th>Options</th>
     </tr>
   </thead>
   <tbody>
@@ -197,8 +159,21 @@
         <td>
           {{pressure}}
         </td>
+        <td>
+          <a type="button" onclick="deleteReading('{{_id}}','{{stationid}}')" class="button is-danger delete-button">
+            {{!-- href="/station/{{stationid}}/reading/{{_id}}" --}}
+            Delete Reading</a>
+        </td>
       </tr>
     {{/each}}
 
   </tbody>
 </table>
+
+<script>
+  function deleteReading(id, stationid) { 
+
+  fetch(`/station/${stationid}/deletereading/${id}`, { method: "DELETE", headers: { "Content-Type": "application/json",
+  } }) .then(response => { if (response.ok) { window.location.href = `/station/${stationid}`; } else {
+  console.error("Error deleting reading"); } }) .catch(error => { console.error("Error deleting reading:", error); }); }
+</script>

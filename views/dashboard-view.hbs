@@ -188,7 +188,7 @@ function deleteStation(stationId) {
         })
         .then(response => {
             if (response.ok) {
-                response.redirect("/dashboard")
+              
                 window.location.href = "/dashboard";
              
                 
@@ -199,6 +199,6 @@ function deleteStation(stationId) {
         .catch(error => {
             console.error("Error deleting station:", error);
         });
-     window.location.href = "/dashboard";
+     
 }
 </script>
