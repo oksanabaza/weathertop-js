@@ -1,0 +1,84 @@
+{{> menu active="user"}}
+
+<div class="content box container">
+    <p class="title">
+        Edit Account Info {{userId}}
+    </p>
+    <form action="/user/{{userId}}/edit" method="post" id="editForm">
+        <input type="hidden" name="_method" value="put" />
+        <div class="field">
+            <label class="label">Member name</label>
+            <div class="control">
+                <input class="input" value="{{userName}}" name="firstName" id="firstNameInput">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Member lastname</label>
+            <div class="control">
+                <input class="input" value="{{userLastName}}" name="lastName" id="lastNameInput">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Member email</label>
+            <div class="control">
+                <input class="input" value="{{userEmail}}" name="email" id="emailInput">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Member password</label>
+            <div class="control">
+                <input class="input" value="{{userPassword}}" name="password" id="passwordInput">
+            </div>
+        </div>
+        <div class="field mt-4">
+            <button type="submit" class="member-submit-btn button">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.getElementById("editForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const userId = "{{userId}}"; // Replace with actual user ID
+    const formData = new FormData(event.target);
+
+    fetch(`/user/${userId}/edit`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(formData),
+    })
+    .then(response => {
+        if (response.ok) {
+            // Redirect to dashboard after successful edit
+            window.location.href = "/dashboard";
+        } else {
+            console.error("Error editing account");
+        }
+    })
+    .catch(error => {
+        console.error("Error editing account:", error);
+    });
+});
+
+function deleteStation(userId) {
+    fetch(`/station/${userId}/deletestation`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "/dashboard";
+        } else {
+            console.error("Error deleting station");
+        }
+    })
+    .catch(error => {
+        console.error("Error deleting station:", error);
+    });
+}
+</script>

@@ -16,12 +16,116 @@ export const dashboardController = {
     const readings = await readingStore.getAllReadings();
     const sortedStations = stations.slice().sort((a, b) => a.name.localeCompare(b.name));
 
+    // //defining trands
+    // let stationTrend;
+    // if (readings.length >= 3) {
+    //   let lastReading = readings.length - 1;
+    //   let secondLastReading = readings.length - 2;
+    //   let thirdLastReading = readings.length - 3;
+
+    //   if (lastReading.temp > secondLastReading.temp && secondLastReading.temp > thirdLastReading.temp) {
+    //     stationTrend = "Rising";
+    //   } else if (lastReading.temp < secondLastReading.temp && secondLastReading.temp < thirdLastReading.temp) {
+    //     stationTrend = "Dropping";
+    //   } else {
+    //     stationTrend = "Unchanged";
+    //   }
+
+    // Wind trends
+    //   if (
+    //     lastReading.windSpeed > secondLastReading.windSpeed &&
+    //     secondLastReading.windSpeed > thirdLastReading.windSpeed
+    //   ) {
+    //     stationTrend = "Rising";
+    //   } else if (
+    //     lastReading.windSpeed < secondLastReading.windSpeed &&
+    //     secondLastReading.windSpeed < thirdLastReading.windSpeed
+    //   ) {
+    //     stationTrend = "Dropping";
+    //   } else {
+    //     stationTrend = "Unchanged";
+    //   }
+
+    //   // Pressure trends
+    //   if (lastReading.pressure > secondLastReading.pressure && secondLastReading.pressure > thirdLastReading.pressure) {
+    //     station.pressureTrend = "Rising";
+    //   } else if (
+    //     lastReading.pressure < secondLastReading.pressure &&
+    //     secondLastReading.pressure < thirdLastReading.pressure
+    //   ) {
+    //     station.pressureTrend = "Dropping";
+    //   } else {
+    //     station.pressureTrend = "Unchanged";
+    //   }
+    // } else {
+    //   station.trend = "N/A";
+    //   station.windTrend = "N/A";
+    //   station.pressureTrend = "N/A";
+    // }
+    ///////////////////////////////
     const combinedData = sortedStations.map((station) => {
       const matchingReadings = readings.filter((reading) => reading.stationid === station._id);
       const sortedReadingsByTemp = readings ? matchingReadings.sort((a, b) => a.temp - b.temp) : null;
       const sortedReadingsByWind = readings ? matchingReadings.sort((a, b) => a.windSpeed - b.windSpeed) : null;
       const sortedReadingsByPressure = readings ? matchingReadings.sort((a, b) => a.pressure - b.pressure) : null;
       const lastMatchingReading = matchingReadings.length > 0 ? matchingReadings[matchingReadings.length - 1] : null;
+
+      //defining trands
+      let tTrend;
+      let pTrend;
+      let wTrend;
+      let matchingReadingsSortByDate;
+      matchingReadingsSortByDate = matchingReadings.sort(function (a, b) {
+        return new Date(a.date) - new Date(b.date);
+      });
+      //temp trends
+      if (matchingReadings.length >= 3) {
+        let lastReading = matchingReadingsSortByDate[matchingReadings.length - 1];
+        let secondLastReading = matchingReadingsSortByDate[matchingReadings.length - 2];
+        let thirdLastReading = matchingReadingsSortByDate[matchingReadings.length - 3];
+
+        if (lastReading.temp > secondLastReading.temp && secondLastReading.temp > thirdLastReading.temp) {
+          tTrend = "Rising";
+        } else if (lastReading.temp < secondLastReading.temp && secondLastReading.temp < thirdLastReading.temp) {
+          tTrend = "Dropping";
+        } else {
+          tTrend = "Unchanged";
+        }
+        // wind trends
+        if (
+          lastReading.windSpeed > secondLastReading.windSpeed &&
+          secondLastReading.windSpeed > thirdLastReading.windSpeed
+        ) {
+          wTrend = "Rising";
+        } else if (
+          lastReading.windSpeed < secondLastReading.windSpeed &&
+          secondLastReading.windSpeed < thirdLastReading.windSpeed
+        ) {
+          wTrend = "Dropping";
+        } else {
+          wTrend = "Unchanged";
+        }
+        // Pressure trends
+        if (
+          lastReading.pressure > secondLastReading.pressure &&
+          secondLastReading.pressure > thirdLastReading.pressure
+        ) {
+          pTrend = "Rising";
+        } else if (
+          lastReading.pressure < secondLastReading.pressure &&
+          secondLastReading.pressure < thirdLastReading.pressure
+        ) {
+          pTrend = "Dropping";
+        } else {
+          pTrend = "Unchanged";
+        }
+      } else {
+        tTrend = "N/A";
+        pTrend = "N/A";
+        // pressureTrend = "N/A";
+      }
+
+      // ////////////////////
       let codeAction;
       if (lastMatchingReading) {
         switch (lastMatchingReading.code) {
@@ -153,13 +257,17 @@ export const dashboardController = {
         maxPressure: lastMatchingReading
           ? sortedReadingsByPressure[sortedReadingsByPressure.length - 1].pressure
           : "N/A",
+        tempTrend: tTrend,
+        pressureTrend: pTrend,
+        windTrend: wTrend,
       };
     });
 
     const viewData = {
       title: "Station Dashboard",
       data: combinedData,
-      loggedInUser: loggedInUser.firstName,
+      // loggedInUser: loggedInUser.firstName,
+      loggedInUser: loggedInUser,
     };
     response.render("dashboard-view", viewData);
   },
@@ -175,5 +283,11 @@ export const dashboardController = {
     console.log(`adding station ${newStation.name}`);
     await stationStore.addStation(newStation);
     response.redirect("/dashboard");
+  },
+  async deleteStation(request, response) {
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+    const stationId = request.params.id;
+    await stationStore.deleteStationById(stationId);
+    response.redirect(303, "/dashboard");
   },
 };

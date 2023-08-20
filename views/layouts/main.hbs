@@ -1,24 +1,3 @@
-{{!-- <html lang="en-IE">
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    {{! <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script> }}
-    <script src="https://kit.fontawesome.com/96a4816da6.js" crossorigin="anonymous"></script>
-  </head>
-
-  <body>
-    <div class="container">
-      {{{body}}}
-    </div>
-  </body>
-
-</html> --}}
-
 <html>
   <head>
     <title>{{title}}</title>
@@ -34,75 +13,28 @@
       <div class="hero-body">
         <div class="container header-wrapper">
           <p class="title">
-
             WeatherTop
-
           </p>
-          {{!-- {{#if loggedInUser}}
-            <div>userEmail: {{loggedInUser}}</div>
-          {{else}}
-            N/A
-          {{/if}} --}}
           <nav class="navbar">
-
             <div class="navbar-menu" id="navMenu">
-
               {{! <div class="navbar-item"> }}
               <div class="buttons">
                   {{#if loggedInUser}}
+                  <a id="user" class="button" href="/user"> Welcome, {{loggedInUser.firstName}} </a>
                 <a id="dashboard" class="button" href="/dashboard"> Dashboard </a>
                 <a id="about" class="button" href="/about"> About </a>
-   {{else}}
+                  {{else}}
                   <a class="button" id="login" href="/login"> Log in </a>
           <a class="button" id="signup" href="/signup"> Sign up </a>
-
-              </div>     {{/if}}
-
-
+              </div>    
+                  {{/if}}
             </div>
           </nav>
 
         </div>
       </div>
     </div>
-    {{! #{if member}
-<div class="nav">
-    <nav class="navbar is-info container box" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="member" href="/member">
-                #{if member}
-                Welcome ${member.firstname}
-                #{/if}
-                #{else}
-                <a  href="/login">Please log in</a>
-                #{/else}
-
-            </a>
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarMenu" class="navbar-menu">
-            <div class="navbar-end">
-
-                <a id="admin"  class="navbar-item #{if request.path == '/admin'}is-active#{/if}" href="/admin">Admin</a>
-                <a id="dashboard" class="navbar-item #{if request.path == '/dashboard'}is-active#{/if}" href="/dashboard">Dashboard</a>
-                <a id="about"  class="navbar-item #{if request.path == '/about'}is-active#{/if}" href="/about">About</a>
-                <a id="logout"  class="navbar-item" href="/logout">Logout</a>
-            </div>
-        </div>
-    </nav>
-</div>
-#{/if}
-#{else}
-
-#{/else} }}
-
     <section class="main-content">
-
       <div class="container">
         {{{body}}}
       </div>
@@ -122,5 +54,5 @@
   </body>
 </html>
 <script>
-  document.getElementById("{{active}}").classList.add("is-primary");
+  document.getElementById("{{active}}").classList.add("is-info");
 </script>

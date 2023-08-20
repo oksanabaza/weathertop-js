@@ -1,9 +1,65 @@
 import { stationStore } from "../models/station-store.js";
 import { readingStore } from "../models/reading-store.js";
+import { accountsController } from "./accounts-controller.js";
 
 export const stationController = {
   async index(request, response) {
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+
+    // Check if loggedInUser exists and has the required properties
+    if (!loggedInUser || !loggedInUser._id || !loggedInUser.firstName) {
+      response.redirect("/login"); // Redirect to login page
+      return;
+    }
     const station = await stationStore.getStationById(request.params.id);
+    // //defining trands
+    // let stationTrend;
+    // if (station.length >= 3) {
+    //   let lastReading = station.readings.length - 1;
+    //   let secondLastReading = station.readings.length - 2;
+    //   let thirdLastReading = station.readings.length - 3;
+
+    //   if (lastReading.temp > secondLastReading.temp && secondLastReading.temp > thirdLastReading.temp) {
+    //     station.trend = "Rising";
+    //   } else if (lastReading.temp < secondLastReading.temp && secondLastReading.temp < thirdLastReading.temp) {
+    //     station.trend = "Dropping";
+    //   } else {
+    //     station.trend = "Unchanged";
+    //   }
+
+    //   // Wind trends
+    //   if (
+    //     lastReading.windSpeed > secondLastReading.windSpeed &&
+    //     secondLastReading.windSpeed > thirdLastReading.windSpeed
+    //   ) {
+    //     stationTrend = "Rising";
+    //   } else if (
+    //     lastReading.windSpeed < secondLastReading.windSpeed &&
+    //     secondLastReading.windSpeed < thirdLastReading.windSpeed
+    //   ) {
+    //     stationTrend = "Dropping";
+    //   } else {
+    //     stationTrend = "Unchanged";
+    //   }
+
+    //   // Pressure trends
+    //   if (lastReading.pressure > secondLastReading.pressure && secondLastReading.pressure > thirdLastReading.pressure) {
+    //     station.pressureTrend = "Rising";
+    //   } else if (
+    //     lastReading.pressure < secondLastReading.pressure &&
+    //     secondLastReading.pressure < thirdLastReading.pressure
+    //   ) {
+    //     station.pressureTrend = "Dropping";
+    //   } else {
+    //     station.pressureTrend = "Unchanged";
+    //   }
+    // } else {
+    //   station.trend = "N/A";
+    //   station.windTrend = "N/A";
+    //   station.pressureTrend = "N/A";
+    // }
+    // ///////////////////////////////
+
     let index = station.readings ? station.readings.length - 1 : null;
     let item = station.readings[index];
     let wBft;
@@ -120,6 +176,8 @@ export const stationController = {
       windDirection: item ? windCompass : null,
       windBft: item ? wBft : null,
       pressure: item ? item.pressure : null,
+      loggedInUser: loggedInUser.firstName,
+      // trend: stationTrend,
     };
 
     response.render("station-view", viewData);
@@ -132,9 +190,22 @@ export const stationController = {
       temp: request.body.temp,
       windSpeed: request.body.windSpeed,
       pressure: request.body.pressure,
+      date: new Date().toLocaleString(),
     };
     console.log(`adding reading ${newReading.code}`);
     await readingStore.addReading(station._id, newReading);
     response.redirect("/station/" + station._id);
+  },
+  async deleteReading(request, response) {
+    let stationId = request.params.stationid;
+    const readingId = request.params._id;
+    console.log(`Updating reading ${readingId} from station ${stationId}`);
+    await readingStore.deleteReading(readingId);
+    // response.redirect(303, "/station/" + stationId);
+    console.log(request.body);
+
+    console.log(request.params);
+    response.redirect(303, "/station/" + stationId);
+    // response.redirect(303, "/dashboard");
   },
 };

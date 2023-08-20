@@ -1,26 +1,6 @@
-{{!-- {{> menu active="dashboard"}}
-
-<section class="section">
-  {{> list-stations}}
-  
-  {{#each data}}
-  <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
-    <div class="column"><div class="card"><h2 class="title">{{name}}</h2></div></div>
-  <div class="column"><div class="card">{{code}}</div></div>
-  <div class="column"><div class="card">Temperature: {{temp}}°C</div></div>
-  <div class="column"><div class="card">Wind chill: {{windChill}}°C </div></div> 
-  <div class="column"><div class="card">Wind BFT: {{windBft}}</div></div>
-  <div class="column"><div class="card">Pressure: {{pressure}} hpa</div></div>
-</div>
-
-{{/each}}
-
-{{> add-station}}
-</section> --}}
 {{> menu active="dashboard"}}
 {{> list-stations}}
-  
-  {{#each data}}
+{{#each data}}
 <div class="content box dashboard container">
     <div>
         <div class="card-wrapper">
@@ -76,11 +56,14 @@
                     <div>{{tempF}}°F</div>
                     <div>Max: {{maxTemp}}</div>
                     <div>Min: {{minTemp}}</div>
+
                         </div>
-                    {{!-- <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.trend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> --}}
+                  <div class="trend-icon">
+
+    <i class="fas fa-arrow-up has-text-danger" style="display: {{#if (eq  tempTrend 'Rising')}}inline{{else}}none{{/if}}"></i>
+    <i class="fas fa-arrow-down has-text-success" style="display: {{#if (eq  tempTrend 'Dropping')}}inline{{else}}none{{/if}}"></i>
+</div>
+
                     </div>
                 </div>
             </div>
@@ -152,10 +135,10 @@
                     <div>Max: {{minWindSpeed}}</div>
                     <div>Min: {{maxWindSpeed}}</div>
                         </div>
-                    {{!-- <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.trend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.trend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> --}}
+                    <div class="trend-icon">
+                           <i class="fas fa-arrow-up has-text-danger" style="display: {{#if (eq  windTrend 'Rising')}}inline{{else}}none{{/if}}"></i>
+    <i class="fas fa-arrow-down has-text-success" style="display: {{#if (eq  windTrend 'Dropping')}}inline{{else}}none{{/if}}"></i>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -171,10 +154,10 @@
                     <div>Max: {{maxPressure}}</div>
                     <div>Min: {{minPressure}}</div>
                         </div>
-                    {{!-- <div class="trend-icon">
-                        <i class="fas fa-arrow-up has-text-danger" style="display: ${station.pressureTrend == 'Rising' ? 'inline' : 'none'}"></i>
-                        <i class="fas fa-arrow-down has-text-success" style="display: ${station.pressureTrend == 'Dropping' ? 'inline' : 'none'}"></i>
-                    </div> --}}
+                    <div class="trend-icon">
+                           <i class="fas fa-arrow-up has-text-danger" style="display: {{#if (eq  pressureTrend 'Rising')}}inline{{else}}none{{/if}}"></i>
+    <i class="fas fa-arrow-down has-text-success" style="display: {{#if (eq  pressureTrend 'Dropping')}}inline{{else}}none{{/if}}"></i>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -185,12 +168,37 @@
          </a>
       </span>
         <span class="icon">
-      <a href="" >
-      <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
-      </a>
+
+<a type="button" class="delete-button" onclick="deleteStation('{{_id}}')">
+                <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
+            </a>
       </span>
     </div>
 </div>
 {{/each}}
 
 {{> add-station}}
+<script>
+function deleteStation(stationId) {
+   fetch(`/station/${stationId}/deletestation`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+              
+                window.location.href = "/dashboard";
+             
+                
+            } else {
+                console.error("Error deleting station");
+            }
+        })
+        .catch(error => {
+            console.error("Error deleting station:", error);
+        });
+     
+}
+</script>

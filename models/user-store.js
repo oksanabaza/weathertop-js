@@ -26,7 +26,23 @@ export const userStore = {
     await db.read();
     return db.data.users.find((user) => user.email === email);
   },
+  // userController.js
+  async updateUserInfo(id, newData) {
+    await db.read();
+    const index = db.data.users.findIndex((user) => user._id === id);
 
+    if (index !== -1) {
+      db.data.users[index] = {
+        ...db.data.users[index],
+        ...newData,
+      };
+
+      await db.write();
+      return db.data.users[index]; // Return the updated user
+    } else {
+      throw new Error(`User with ID ${id} not found.`);
+    }
+  },
   async deleteUserById(id) {
     await db.read();
     const index = db.data.users.findIndex((user) => user._id === id);

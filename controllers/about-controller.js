@@ -10,6 +10,7 @@ export const aboutController = {
     }
     const viewData = {
       title: "About Playlist",
+      loggedInUser: loggedInUser,
     };
     console.log("about rendering");
     response.render("about-view", viewData);

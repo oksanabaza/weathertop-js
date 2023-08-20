@@ -1,0 +1,102 @@
+{[
+{
+    code: '100',
+    temp: '4',
+    windSpeed: '4',
+    pressure: '4',
+    date: '8/18/2023, 4:05:59 PM',
+    _id: '493a292e-03f8-49c9-bfe4-686a51fa4178',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '',
+    temp: '5',
+    windSpeed: '5',
+    pressure: '5',
+    date: '8/18/2023, 4:06:04 PM',
+    _id: '81cf181e-78e0-4c6d-bbfd-7c26c05dccb0',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '',
+    temp: '6',
+    windSpeed: '6',
+    pressure: '6',
+    date: '8/18/2023, 4:06:08 PM',
+    _id: '50b3a7e4-30be-4227-8eea-e44fcd829d29',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '550',
+    temp: '4',
+    windSpeed: '8',
+    pressure: '6',
+    date: '8/18/2023, 4:10:24 PM',
+    _id: '07903ee3-7f36-4776-b81d-fe2cf89a64de',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '100',
+    temp: '3',
+    windSpeed: '4',
+    pressure: '7',
+    date: 'Fri Aug 18 2023',
+    _id: '0e362239-3a2e-4764-8ff0-cb250ee0138e',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '100',
+    temp: '3',
+    windSpeed: '5',
+    pressure: '7',
+    _id: 'e6d957fe-0d15-4951-b123-8aed551cf865',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '400',
+    temp: '3',
+    windSpeed: '5',
+    pressure: '7',
+    date: 'Fri Aug 18 2023',
+    _id: '4761eb59-5196-4766-99cf-50fb208e59c8',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '500',
+    temp: '3',
+    windSpeed: '7',
+    pressure: '7',
+    date: '8/18/2023, 3:55:37 PM',
+    _id: '7817e387-995e-4905-ba9e-24211c68eef8',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '550',
+    temp: '3',
+    windSpeed: '300',
+    pressure: '7',
+    date: '8/18/2023, 3:55:47 PM',
+    _id: 'dee639ef-e2fa-48b1-ab7d-c3b763dd4807',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '100',
+    temp: '3',
+    windSpeed: '4',
+    pressure: '987',
+    date: '2023-08-18T14:52:39.791Z',
+    _id: 'a6dff3ad-02a1-4a7b-8501-913970964436',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+},
+{
+    code: '400',
+    temp: '5',
+    windSpeed: '4',
+    pressure: '1001',
+    _id: '02288239-7706-4de0-b3b8-bec50644829f',
+    stationid: '17881ea0-0eed-43c9-826e-c25b6762be43'
+}
+]}
+// 5 lastReading
+// 3 secondLastReading
+// 3  thirdLastReading
