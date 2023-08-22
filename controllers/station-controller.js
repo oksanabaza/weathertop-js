@@ -1,9 +1,12 @@
 import { stationStore } from "../models/station-store.js";
 import { readingStore } from "../models/reading-store.js";
 import { accountsController } from "./accounts-controller.js";
+import axios from "axios";
 
 export const stationController = {
   async index(request, response) {
+    let toggle = false;
+
     const loggedInUser = await accountsController.getLoggedInUser(request);
 
     // Check if loggedInUser exists and has the required properties
@@ -12,53 +15,6 @@ export const stationController = {
       return;
     }
     const station = await stationStore.getStationById(request.params.id);
-    // //defining trands
-    // let stationTrend;
-    // if (station.length >= 3) {
-    //   let lastReading = station.readings.length - 1;
-    //   let secondLastReading = station.readings.length - 2;
-    //   let thirdLastReading = station.readings.length - 3;
-
-    //   if (lastReading.temp > secondLastReading.temp && secondLastReading.temp > thirdLastReading.temp) {
-    //     station.trend = "Rising";
-    //   } else if (lastReading.temp < secondLastReading.temp && secondLastReading.temp < thirdLastReading.temp) {
-    //     station.trend = "Dropping";
-    //   } else {
-    //     station.trend = "Unchanged";
-    //   }
-
-    //   // Wind trends
-    //   if (
-    //     lastReading.windSpeed > secondLastReading.windSpeed &&
-    //     secondLastReading.windSpeed > thirdLastReading.windSpeed
-    //   ) {
-    //     stationTrend = "Rising";
-    //   } else if (
-    //     lastReading.windSpeed < secondLastReading.windSpeed &&
-    //     secondLastReading.windSpeed < thirdLastReading.windSpeed
-    //   ) {
-    //     stationTrend = "Dropping";
-    //   } else {
-    //     stationTrend = "Unchanged";
-    //   }
-
-    //   // Pressure trends
-    //   if (lastReading.pressure > secondLastReading.pressure && secondLastReading.pressure > thirdLastReading.pressure) {
-    //     station.pressureTrend = "Rising";
-    //   } else if (
-    //     lastReading.pressure < secondLastReading.pressure &&
-    //     secondLastReading.pressure < thirdLastReading.pressure
-    //   ) {
-    //     station.pressureTrend = "Dropping";
-    //   } else {
-    //     station.pressureTrend = "Unchanged";
-    //   }
-    // } else {
-    //   station.trend = "N/A";
-    //   station.windTrend = "N/A";
-    //   station.pressureTrend = "N/A";
-    // }
-    // ///////////////////////////////
 
     let index = station.readings ? station.readings.length - 1 : null;
     let item = station.readings[index];
@@ -166,6 +122,21 @@ export const stationController = {
         windCompass = "";
       }
     }
+    // autogenerate report
+    const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=${station.latitude}&lon=${station.longitude}&appid=1034f20414a780ad33f80a0fca6c250d`;
+    let report = {};
+    const result = await axios.get(oneCallRequest);
+
+    if (result.status == 200) {
+      const reading = result.data;
+      report.timezone = reading.timezone;
+      report.pressure = reading.current.pressure;
+      report.windSpeed = reading.current.wind_speed;
+      report.windDegree = reading.current.wind_deg;
+      report.code = reading.current.weather[0].main;
+      report.temp = reading.current.temp;
+    }
+    // end of autogenerate report logic
     const viewData = {
       name: "station",
       station: station,
@@ -178,12 +149,30 @@ export const stationController = {
       pressure: item ? item.pressure : null,
       loggedInUser: loggedInUser,
       // trend: stationTrend,
+      reading: report,
+      toggle,
     };
 
     response.render("station-view", viewData);
   },
 
   async addReading(request, response) {
+    let final = {};
+    // autogenerate report
+    const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=52.1624&lon=-7.1524&appid=1034f20414a780ad33f80a0fca6c250d`;
+    let report = {};
+    const result = await axios.get(oneCallRequest);
+
+    if (result.status == 200) {
+      const reading = result.data;
+      report.timezone = reading.timezone;
+      report.pressure = reading.current.pressure;
+      report.windSpeed = reading.current.wind_speed;
+      report.windDegree = reading.current.wind_deg;
+      report.code = reading.current.weather[0].main;
+      report.temp = reading.current.temp;
+    }
+    // end of autogenerate report logic
     const station = await stationStore.getStationById(request.params.id);
     const newReading = {
       code: request.body.code,
@@ -192,8 +181,37 @@ export const stationController = {
       pressure: request.body.pressure,
       date: new Date().toLocaleString(),
     };
+
     console.log(`adding reading ${newReading.code}`);
     await readingStore.addReading(station._id, newReading);
+    response.redirect("/station/" + station._id);
+  },
+  async generateReading(request, response) {
+    let final = {};
+    // autogenerate report
+    const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=52.1624&lon=-7.1524&appid=1034f20414a780ad33f80a0fca6c250d`;
+    let report = {};
+    const result = await axios.get(oneCallRequest);
+
+    if (result.status == 200) {
+      const reading = result.data;
+      report.timezone = reading.timezone;
+      report.pressure = reading.current.pressure;
+      report.windSpeed = reading.current.wind_speed;
+      report.windDegree = reading.current.wind_deg;
+      report.code = reading.current.weather[0].main;
+      report.temp = reading.current.temp;
+    }
+    const station = await stationStore.getStationById(request.params.id);
+    console.log(`generated reading ${report.timezone}`);
+    // console.log(station._id, "station");
+    await readingStore.addReading(station._id, {
+      code: report.code,
+      pressure: report.pressure,
+      windSpeed: report.windSpeed,
+      temp: report.temp,
+      date: new Date().toLocaleString(),
+    });
     response.redirect("/station/" + station._id);
   },
   async deleteReading(request, response) {

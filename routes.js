@@ -20,6 +20,7 @@ router.get("/dashboard", dashboardController.index);
 router.post("/dashboard/addstation", dashboardController.addStation);
 router.get("/station/:id", stationController.index);
 router.post("/station/:id/addreading", stationController.addReading);
+router.post("/station/:id/generatereading", stationController.generateReading);
 router.get("/about", aboutController.index);
 
 router.get("/user", userController.index);
@@ -43,3 +44,5 @@ router.delete("/station/:id/deletestation", dashboardController.deleteStation);
 // router.delete("/station/:stationId/deletereading/:readingId", readingStore.getReadingById);
 
 router.delete("/station/:stationid/deletereading/:_id", stationController.deleteReading);
+
+// router.post("/updateToggle", stationController.updateToggle);
