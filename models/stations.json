@@ -61,32 +61,11 @@
       "_id": "a32a5027-5bc6-4486-bf9e-2a11df484498"
     },
     {
-      "name": "g",
-      "latitude": "",
-      "longitude": "",
-      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
-      "_id": "fcaccb3f-38f0-41ec-80f0-8c02539cdf98"
-    },
-    {
-      "name": "weathertop",
-      "latitude": "56.77",
-      "longitude": "76.686",
-      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
-      "_id": "102b7cf4-dcd7-4f3f-b555-8de86170bff9"
-    },
-    {
       "name": "Tramore",
       "latitude": "52.1614",
       "longitude": "7.1493",
       "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
       "_id": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
-    },
-    {
-      "name": "Tramrore2",
-      "latitude": "52.1614",
-      "longitude": "7.1493",
-      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
-      "_id": "7545d625-e221-4071-8adf-5067afdabf28"
     }
   ]
 }

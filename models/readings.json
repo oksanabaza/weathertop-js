@@ -218,51 +218,48 @@
       "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
     },
     {
-      "code": "Clear",
-      "temp": 289.92,
-      "windSpeed": 4.63,
-      "pressure": 1019,
-      "date": "8/22/2023, 7:53:22 PM",
-      "_id": "4fe7a987-4b4e-4d68-9f06-557ec81b78bd",
-      "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
-    },
-    {
-      "code": "100",
-      "temp": 289.92,
-      "windSpeed": 4.63,
-      "pressure": 1019,
-      "date": "8/22/2023, 7:54:18 PM",
-      "_id": "5cfa4abb-486b-40b6-8f11-8ed5774e74f2",
-      "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
-    },
-    {
-      "code": "",
-      "temp": "",
-      "windSpeed": "",
-      "pressure": "",
-      "date": "8/22/2023, 8:14:52 PM",
-      "_id": "0ab21beb-4fbb-48c7-ac59-bc3f030f5c36",
-      "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
-    },
-    {
-      "code": 100,
-      "pressure": 1000,
-      "_id": "53e5c87d-7f07-40f3-9a75-9c320e94aab6",
-      "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
-    },
-    {
-      "code": "Clear",
-      "pressure": 1019,
-      "_id": "24d00466-a887-4be3-b0d2-3e55a0e2c471",
+      "code": "Clouds",
+      "pressure": 1016,
+      "windSpeed": 2.57,
+      "temp": 290.82,
+      "date": "8/28/2023, 6:10:17 PM",
+      "_id": "d849b405-3876-43e1-a6a7-4009c2a78f45",
       "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
     },
     {
       "code": "Clouds",
-      "pressure": 1019,
-      "windSpeed": 3.6,
-      "temp": 289.45,
-      "date": "8/22/2023, 8:43:16 PM",
-      "_id": "bea48498-33a3-4f00-ac3d-b25da58580f4",
+      "pressure": 1016,
+      "windSpeed": 2.57,
+      "temp": 290.82,
+      "date": "8/28/2023, 6:10:24 PM",
+      "_id": "b340712e-d9df-468e-bc96-fcc2b16af4ac",
+      "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
+    },
+    {
+      "code": "Clouds",
+      "pressure": 1015,
+      "windSpeed": 2.24,
+      "temp": 289.69,
+      "date": "8/28/2023, 8:06:42 PM",
+      "_id": "b948fe84-82d3-4bfd-8b5d-17af3c00ff3e",
+      "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
+    },
+    {
+      "code": "Clouds",
+      "pressure": 1015,
+      "windSpeed": 2.24,
+      "temp": 289.69,
+      "date": "8/28/2023, 8:06:46 PM",
+      "_id": "31cc3a76-cf90-4f1a-97ce-9ff85ee502a9",
+      "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
+    },
+    {
+      "code": "Clouds",
+      "pressure": 1015,
+      "windSpeed": 2.24,
+      "temp": 289.76,
+      "date": "8/28/2023, 8:11:25 PM",
+      "_id": "a8039bee-e9ea-4e8c-8502-e46398fa4095",
       "stationid": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
     }
   ]

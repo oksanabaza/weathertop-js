@@ -130,6 +130,10 @@
   </div>
 
 </div>
+<div style="margin-top: 20px;">
+<div class="box" id="chart"></div>
+
+</div>
 <table class="table is-fullwidth">
 
   <thead>
@@ -169,7 +173,32 @@
         </td>
   </tbody>
 </table>
+<script>
+  const data = {
+    labels: [
+      {{#each reading.trendLabels}}
+        "{{this}}",
+      {{/each}}
+    ],
+    datasets: [
+      {
+        name: "Temperature", type: "line",
+        values: [
+          {{#each reading.tempTrend}}
+            {{this}},
+          {{/each}}
+        ]
+      }
+    ]
+  }
 
+  const chart = new frappe.Chart("#chart", {
+    title: "Temperature Trend",
+    data: data,
+    type: 'line',
+    height: 250,
+  })
+</script>
 <script>
   function deleteReading(id, stationid) { 
 

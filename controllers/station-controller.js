@@ -123,7 +123,8 @@ export const stationController = {
       }
     }
     // autogenerate report
-    const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=${station.latitude}&lon=${station.longitude}&appid=1034f20414a780ad33f80a0fca6c250d`;
+    // const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=${station.latitude}&lon=${station.longitude}&appid=1034f20414a780ad33f80a0fca6c250d`;
+    const oneCallRequest = `https://api.openweathermap.org/data/2.5/onecall?lat=${station.latitude}&lon=${station.longitude}&units=metric&appid=1034f20414a780ad33f80a0fca6c250d`;
     let report = {};
     const result = await axios.get(oneCallRequest);
 
@@ -135,6 +136,19 @@ export const stationController = {
       report.windDegree = reading.current.wind_deg;
       report.code = reading.current.weather[0].main;
       report.temp = reading.current.temp;
+
+      // new code added
+      report.tempTrend = [];
+      report.trendLabels = [];
+      const trends = result.data.daily;
+      for (let i = 0; i < trends.length; i++) {
+        report.tempTrend.push(trends[i].temp.day);
+        const date = new Date(trends[i].dt * 1000);
+        report.trendLabels.push(`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`);
+      }
+      console.log(report.tempTrend, "report.tempTrend");
+      console.log(report.trendLabels, "report.trendLabels");
+      // end of new code added
     }
     // end of autogenerate report logic
     const viewData = {

@@ -177,6 +177,7 @@
     </div>
 </div>
 {{/each}}
+<div id="map" style="width: 100%; height: 400px;"></div>
 
 {{> add-station}}
 <script>
@@ -202,4 +203,36 @@ function deleteStation(stationId) {
         });
      
 }
+
+</script>
+<script>
+
+	var map = L.map('map').setView([52.1614, -7.1493], 13);
+
+	var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+
+	var marker = L.marker([52.1614, -7.1493]).addTo(map)
+		.bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+	
+
+
+
+	var popup = L.popup()
+		.setLatLng([52.1614, -7.1493])
+		.setContent('I am a standalone popup.')
+		.openOn(map);
+
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent('You clicked the map at ' + e.latlng.toString())
+			.openOn(map);
+	}
+
+	map.on('click', onMapClick);
+
 </script>
