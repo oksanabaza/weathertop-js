@@ -173,6 +173,48 @@ export const dashboardController = {
             break;
         }
       }
+      // defining windDirection
+      let windCompass;
+
+      if (lastMatchingReading !== null) {
+        if (lastMatchingReading.windDirection < 11.25) {
+          windCompass = "N";
+        } else if (lastMatchingReading.windDirection >= 348.75) {
+          windCompass = "N";
+        } else if (lastMatchingReading.windDirection < 33.75) {
+          windCompass = "NNE";
+        } else if (lastMatchingReading.windDirection < 56.25) {
+          windCompass = "NE";
+        } else if (lastMatchingReading.windDirection < 78.75) {
+          windCompass = "ENE";
+        } else if (lastMatchingReading.windDirection < 101.25) {
+          windCompass = "E";
+        } else if (lastMatchingReading.windDirection < 123.75) {
+          windCompass = "ESE";
+        } else if (lastMatchingReading.windDirection < 146.25) {
+          windCompass = "SE";
+        } else if (lastMatchingReading.windDirection < 168.75) {
+          windCompass = "SSE";
+        } else if (lastMatchingReading.windDirection < 191.25) {
+          windCompass = "S";
+        } else if (lastMatchingReading.windDirection < 213.75) {
+          windCompass = "SSW";
+        } else if (lastMatchingReading.windDirection < 236.25) {
+          windCompass = "SW";
+        } else if (lastMatchingReading.windDirection < 258.75) {
+          windCompass = "WSW";
+        } else if (lastMatchingReading.windDirection < 281.25) {
+          windCompass = "W";
+        } else if (lastMatchingReading.windDirection < 303.75) {
+          windCompass = "WNW";
+        } else if (lastMatchingReading.windDirection < 326.25) {
+          windCompass = "NW";
+        } else if (lastMatchingReading.windDirection < 348.75) {
+          windCompass = "NW";
+        } else {
+          windCompass = "";
+        }
+      }
       // let wBft;
       // if (lastMatchingReading && lastMatchingReading.windSpeed !== null) {
       //   if (lastMatchingReading.windSpeed === 1) {
@@ -263,6 +305,7 @@ export const dashboardController = {
         windSpeed: lastMatchingReading ? lastMatchingReading.windSpeed : "N/A",
         windBft: lastMatchingReading ? wBft : "N/A",
         windChill: lastMatchingReading ? Math.round(wChill) : "N/A",
+        windDirection: lastMatchingReading ? windCompass : "N/A",
         pressure: lastMatchingReading ? lastMatchingReading.pressure : "N/A",
         minTemp: lastMatchingReading ? sortedReadingsByTemp[0].temp : "N/A",
         maxTemp: lastMatchingReading ? sortedReadingsByTemp[sortedReadingsByTemp.length - 1].temp : "N/A",
@@ -279,12 +322,15 @@ export const dashboardController = {
         reading: report,
       };
     });
-
+    // defining data for map
+    let mapData = stations.map((station) => [station.latitude, station.longitude]);
+    let mapArray = JSON.stringify(mapData);
+    //
     const viewData = {
       title: "Station Dashboard",
       data: combinedData,
-      // loggedInUser: loggedInUser.firstName,
       loggedInUser: loggedInUser,
+      mapArray: mapArray,
     };
     response.render("dashboard-view", viewData);
   },

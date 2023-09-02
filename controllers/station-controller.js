@@ -18,37 +18,68 @@ export const stationController = {
 
     let index = station.readings ? station.readings.length - 1 : null;
     let item = station.readings[index];
+    // let wBft;
+    // if (item && item.windSpeed !== null) {
+    //   if (item.windSpeed === "1") {
+    //     wBft = "Calm";
+    //   } else if (item.windSpeed > "1" && item.windSpeed <= "5") {
+    //     wBft = "Light Air";
+    //   } else if (item.windSpeed >= "6" && item.windSpeed <= "11") {
+    //     wBft = "Light Breeze";
+    //   } else if (item.windSpeed >= "12" && item.windSpeed <= "19") {
+    //     wBft = "Gentle Breeze";
+    //   } else if (item.windSpeed >= "20" && item.windSpeed <= "28") {
+    //     wBft = "Moderate Breeze";
+    //   } else if (item.windSpeed >= "29" && item.windSpeed <= "38") {
+    //     wBft = "Fresh Breeze";
+    //   } else if (item.windSpeed >= "39" && item.windSpeed <= "49") {
+    //     wBft = "Strong Breeze";
+    //   } else if (item.windSpeed >= "50" && item.windSpeed <= "61") {
+    //     wBft = "Near Gale";
+    //   } else if (item.windSpeed >= "62" && item.windSpeed <= "74") {
+    //     wBft = "Gale";
+    //   } else if (item.windSpeed >= "75" && item.windSpeed <= "88") {
+    //     wBft = "Severe Gale";
+    //   } else if (item.windSpeed >= "89" && item.windSpeed <= "102") {
+    //     wBft = "Strong storm";
+    //   } else if (item.windSpeed >= "103" && item.windSpeed <= "117") {
+    //     wBft = "Violent storm";
+    //   } else {
+    //     wBft = "";
+    //   }
+    // }
     let wBft;
     if (item && item.windSpeed !== null) {
-      if (item.windSpeed === "1") {
+      const windSpeed = item.windSpeed;
+
+      if (windSpeed === 1) {
         wBft = "Calm";
-      } else if (item.windSpeed > "1" && item.windSpeed <= "5") {
+      } else if (windSpeed > 1 && windSpeed <= 5) {
         wBft = "Light Air";
-      } else if (item.windSpeed >= "6" && item.windSpeed <= "11") {
+      } else if (windSpeed <= 11) {
         wBft = "Light Breeze";
-      } else if (item.windSpeed >= "12" && item.windSpeed <= "19") {
+      } else if (windSpeed <= 19) {
         wBft = "Gentle Breeze";
-      } else if (item.windSpeed >= "20" && item.windSpeed <= "28") {
+      } else if (windSpeed <= 28) {
         wBft = "Moderate Breeze";
-      } else if (item.windSpeed >= "29" && item.windSpeed <= "38") {
+      } else if (windSpeed <= 38) {
         wBft = "Fresh Breeze";
-      } else if (item.windSpeed >= "39" && item.windSpeed <= "49") {
+      } else if (windSpeed <= 49) {
         wBft = "Strong Breeze";
-      } else if (item.windSpeed >= "50" && item.windSpeed <= "61") {
+      } else if (windSpeed <= 61) {
         wBft = "Near Gale";
-      } else if (item.windSpeed >= "62" && item.windSpeed <= "74") {
+      } else if (windSpeed <= 74) {
         wBft = "Gale";
-      } else if (item.windSpeed >= "75" && item.windSpeed <= "88") {
+      } else if (windSpeed <= 88) {
         wBft = "Severe Gale";
-      } else if (item.windSpeed >= "89" && item.windSpeed <= "102") {
+      } else if (windSpeed <= 102) {
         wBft = "Strong storm";
-      } else if (item.windSpeed >= "103" && item.windSpeed <= "117") {
+      } else if (windSpeed <= 117) {
         wBft = "Violent storm";
       } else {
-        wBft = "";
+        wBft = "N/A";
       }
     }
-
     let codeAction;
     if (item) {
       switch (item.code) {
@@ -123,8 +154,8 @@ export const stationController = {
       }
     }
     // autogenerate report
-    // const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=${station.latitude}&lon=${station.longitude}&appid=1034f20414a780ad33f80a0fca6c250d`;
-    const oneCallRequest = `https://api.openweathermap.org/data/2.5/onecall?lat=${station.latitude}&lon=${station.longitude}&units=metric&appid=1034f20414a780ad33f80a0fca6c250d`;
+    const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=${station.latitude}&lon=${station.longitude}&appid=1034f20414a780ad33f80a0fca6c250d`;
+    // const oneCallRequest = `https://api.openweathermap.org/data/2.5/onecall?lat=${station.latitude}&lon=${station.longitude}&units=metric&appid=1034f20414a780ad33f80a0fca6c250d`;
     let report = {};
     const result = await axios.get(oneCallRequest);
 
@@ -142,12 +173,13 @@ export const stationController = {
       report.trendLabels = [];
       const trends = result.data.daily;
       for (let i = 0; i < trends.length; i++) {
-        report.tempTrend.push(trends[i].temp.day);
+        report.tempTrend.push((trends[i].temp.day - 273.15).toFixed());
+
         const date = new Date(trends[i].dt * 1000);
         report.trendLabels.push(`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`);
       }
-      console.log(report.tempTrend, "report.tempTrend");
-      console.log(report.trendLabels, "report.trendLabels");
+      // console.log(report.tempTrend, "report.tempTrend");
+      // console.log(report.trendLabels, "report.trendLabels");
       // end of new code added
     }
     // end of autogenerate report logic
@@ -185,6 +217,7 @@ export const stationController = {
       report.windDegree = reading.current.wind_deg;
       report.code = reading.current.weather[0].main;
       report.temp = reading.current.temp;
+      //  tempF: lastMatchingReading ? (lastMatchingReading.temp * 9) / 5 + 32 : "N/A",
     }
     // end of autogenerate report logic
     const station = await stationStore.getStationById(request.params.id);
@@ -192,6 +225,7 @@ export const stationController = {
       code: request.body.code,
       temp: request.body.temp,
       windSpeed: request.body.windSpeed,
+      windDirection: request.body.windDirection,
       pressure: request.body.pressure,
       date: new Date().toLocaleString(),
     };
@@ -201,31 +235,76 @@ export const stationController = {
     response.redirect("/station/" + station._id);
   },
   async generateReading(request, response) {
+    const loggedInUser = await accountsController.getLoggedInUser(request);
+
+    // Check if loggedInUser exists and has the required properties
+    if (!loggedInUser || !loggedInUser._id || !loggedInUser.firstName) {
+      response.redirect("/login"); // Redirect to login page
+      return;
+    }
+    const station = await stationStore.getStationById(request.params.id);
+    // console.log(station, "station");
     let final = {};
     // autogenerate report
-    const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=52.1624&lon=-7.1524&appid=1034f20414a780ad33f80a0fca6c250d`;
+    const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=${station.latitude}&lon=${station.longitude}&appid=1034f20414a780ad33f80a0fca6c250d`;
     let report = {};
     const result = await axios.get(oneCallRequest);
 
     if (result.status == 200) {
       const reading = result.data;
+      // test;
+      let codeAction;
+      if (reading) {
+        switch (reading.current.weather[0].main) {
+          case "Clear":
+            codeAction = "100";
+            break;
+          case "Mist":
+            codeAction = "200";
+            break;
+          case "Clouds":
+            codeAction = "300";
+            break;
+          case "Drizzle":
+            codeAction = "400";
+            break;
+          case "Heavy Showers":
+            codeAction = "500";
+            break;
+          case "Rain":
+            codeAction = "600";
+            break;
+          case "Snow":
+            codeAction = "700";
+            break;
+          case "Thunder":
+            codeAction = "800";
+            break;
+          default:
+            codeAction = "N/A";
+            break;
+        }
+      }
+      // test
       report.timezone = reading.timezone;
       report.pressure = reading.current.pressure;
       report.windSpeed = reading.current.wind_speed;
       report.windDegree = reading.current.wind_deg;
-      report.code = reading.current.weather[0].main;
+      report.code = codeAction;
       report.temp = reading.current.temp;
     }
-    const station = await stationStore.getStationById(request.params.id);
-    console.log(`generated reading ${report.timezone}`);
+    // const station = await stationStore.getStationById(request.params.id);
+
     // console.log(station._id, "station");
     await readingStore.addReading(station._id, {
       code: report.code,
       pressure: report.pressure,
       windSpeed: report.windSpeed,
-      temp: report.temp,
+      windDirection: report.windDegree,
+      temp: (report.temp - 273.15).toFixed(),
       date: new Date().toLocaleString(),
     });
+    console.log(`generated reading ${report.code}`);
     response.redirect("/station/" + station._id);
   },
   async deleteReading(request, response) {
@@ -234,7 +313,7 @@ export const stationController = {
     console.log(`Updating reading ${readingId} from station ${stationId}`);
     await readingStore.deleteReading(readingId);
     // response.redirect(303, "/station/" + stationId);
-    console.log(request.body);
+    // console.log(request.body);
 
     console.log(request.params);
     response.redirect(303, "/station/" + stationId);

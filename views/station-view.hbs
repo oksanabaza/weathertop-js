@@ -1,6 +1,6 @@
 {{> menu}}
 
-<section class="section">
+<section class="section station-section">
   <div class="title">
     {{station.title}}
   </div>
@@ -16,7 +16,7 @@
      
   </div> --}}
 
-    <a id="generateButton" onclick="generateReading('{{station.id}}')" class="button is-danger delete-button">
+    <a id="generateButton" onclick="generateReading('{{station._id}}')" class="button">
       AutoGenerate Reading
     </a>
   </div>
@@ -24,7 +24,8 @@
 </section>
 <script>
   function generateReading(id){
-     fetch(`/station/30408d16-6e81-4bf2-bb76-90ebfbce7653/generatereading`, {
+ console.log(id,"id")
+     fetch(`/station/${id}/generatereading`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -33,7 +34,7 @@
         .then(response => {
             if (response.ok) {
               
-                window.location.href = "/station/30408d16-6e81-4bf2-bb76-90ebfbce7653";
+                window.location.href = `/station/${id}`;
              
                 
             } else {

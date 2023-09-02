@@ -1,8 +1,8 @@
 {{> menu active="user"}}
 
-<div class="content box container">
+<div class="content box user-card">
     <p class="title">
-        Edit Account Info {{userId}}
+        Edit Account Info 
     </p>
     <form action="/user/{{userId}}/edit" method="post" id="editForm">
         <input type="hidden" name="_method" value="put" />

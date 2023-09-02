@@ -61,11 +61,46 @@
       "_id": "a32a5027-5bc6-4486-bf9e-2a11df484498"
     },
     {
-      "name": "Tramore",
-      "latitude": "52.1614",
-      "longitude": "7.1493",
+      "name": "Dunmore",
+      "latitude": "52.1528",
+      "longitude": "-6.9948",
       "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
-      "_id": "30408d16-6e81-4bf2-bb76-90ebfbce7653"
+      "_id": "3d00eb53-87d4-45dc-9d91-94b23ab54681"
+    },
+    {
+      "name": "Annestown",
+      "latitude": "52.1406",
+      "longitude": "-7.2719",
+      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
+      "_id": "fc1dee60-ec9d-4966-83e5-ab2e0d301bb4"
+    },
+    {
+      "name": "London",
+      "latitude": "51.5072",
+      "longitude": "0.1276",
+      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
+      "_id": "d77ccaca-ec8b-49c5-b487-d4cc9cf806da"
+    },
+    {
+      "name": "Paris",
+      "latitude": "48.8566",
+      "longitude": "2.3522",
+      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
+      "_id": "0c2dcf88-5296-4c76-867b-948cf5358a92"
+    },
+    {
+      "name": "Toronto",
+      "latitude": "43.7001",
+      "longitude": "-79.4163",
+      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
+      "_id": "d113e2ba-5c91-41ea-998e-eb361d3cdc8d"
+    },
+    {
+      "name": "Zaporizhzhya",
+      "latitude": "47.8167",
+      "longitude": "35.1833",
+      "userid": "909e1285-f5df-42e2-9211-30c7c37c6445",
+      "_id": "ba337bdd-173b-4157-9b64-8065f4d874e0"
     }
   ]
 }

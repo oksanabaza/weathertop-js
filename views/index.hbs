@@ -1,5 +1,22 @@
-{{> welcome-menu}}
+{{> welcome-menu active="login"}}
 
-<section class="section">
-  <p> Sign up or Log in... </p>
+<section class="section main-login-section">
+  <div class="main-login-menu">
+    <div ><img class="main-login-image" src="/images/photo.jpg" /></div>
+    <div>
+  <h1 class="title">Log in</h1>
+  <form action="/authenticate" method="POST">
+    <div class="field">
+      <label class="label">Email</label> <input class="input" type="text" placeholder="Enter email" name="email">
+    </div>
+    <div class="field">
+      <label class="label">Password</label> <input class="input" type="password" placeholder="Enter Password" name="password">
+    </div>
+    <div class="field is-grouped submit-btn">
+      <button class="button is-info">Submit</button>
+    </div>
+  </form>
+  <div>Dont have an account? Click <a class="link-text" href="/signup">Sign up</a> to create one</div>
+  </div>
+  </div>
 </section>

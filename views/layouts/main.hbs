@@ -13,14 +13,16 @@
    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
    crossorigin=""></script>
     <link rel="stylesheet" href="/css/style.css" />
+       <link rel="stylesheet" href="/css/custom-bulma.css" />
   </head>
   <body>
-    <div class="hero is-info is-small header-class mb-6">
+    <div class="hero is-info is-small header-class mb-6 header">
       <div class="hero-body">
         <div class="container header-wrapper">
           <p class="title">
             WeatherTop
           </p>
+          {{!-- <img src="/images/logo.png"/> --}}
           <nav class="navbar">
             <div class="navbar-menu" id="navMenu">
               {{! <div class="navbar-item"> }}
@@ -35,6 +37,7 @@
               </div>    
                   {{/if}}
             </div>
+            
           </nav>
 
         </div>
@@ -61,4 +64,22 @@
 </html>
 <script>
   document.getElementById("{{active}}").classList.add("is-info");
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get all "navbar-burger" elements
+    const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Add click event listener on each "navbar-burger" element
+    navbarBurgers.forEach((el) => {
+      el.addEventListener('click', () => {
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        const target = el.dataset.target;
+        const targetElement = document.getElementById(target);
+
+        el.classList.toggle('is-active');
+        targetElement.classList.toggle('is-active');
+      });
+    });
+  });
 </script>

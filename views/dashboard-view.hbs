@@ -1,10 +1,12 @@
 {{> menu active="dashboard"}}
 {{> list-stations}}
 {{#each data}}
-<div class="content box dashboard container">
-    <div>
+{{!-- <div class="{{#if (eq code "Clear")}} has-background-success {{/if}}"> --}}
+<div class="content box dashboard container ">
+    <div >
         <div class="card-wrapper">
-            <div class="card">
+            <div class="card tooltip">
+                <div class="station-tooltiptext">{{name}}</div>
                 <div class="card-content">
                     <div class="card-header">
                         <h1>{{name}}</h1>
@@ -13,13 +15,13 @@
                     <div class="media-content">
                         <p class="subtitle is-6">Lat: {{latitude}}</p>
                         <p class="subtitle is-6">Lng: {{longitude}}</p>
-                        <div>test:{{reading.temperature}}</div>
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card weather">
                 <div class="card-content">
                     <h1>Weather</h1>
+                    <div>{{code}}</div>
                     <div class="weather-icon"> 
               {{#if (eq code "Clear")}}
   <img alt="clear" src="/images/sun.png"/>
@@ -55,8 +57,8 @@
                     <div>{{temp}}°C</div>
 
                     <div>{{tempF}}°F</div>
-                    <div>Max: {{maxTemp}}</div>
-                    <div>Min: {{minTemp}}</div>
+                    <div>Max: {{maxTemp}}°C</div>
+                    <div>Min: {{minTemp}}°C</div>
 
                         </div>
                   <div class="trend-icon">
@@ -76,63 +78,48 @@
                     </div>
                     <div class="card-bottom">
                         <div>
-
-                            {{!-- <div>
-                                #{if station.windCompass == 'N'}
-                                <div>North</div>
-                                #{/if}
-                                #{if station.windCompass == 'NNE'}
-                                <div>North North East</div>
-                                #{/if}
-                                #{if station.windCompass == 'NE'}
-                                <div>North East</div>
-                                #{/if}
-                                #{if station.windCompass == 'ENE'}
-                                <div>East North East</div>
-                                #{/if}
-                                #{if station.windCompass == 'E'}
-                                <div>East</div>
-                                #{/if}
-                                #{if station.windCompass == 'ESE'}
-                                <div>East South East</div>
-                                #{/if}
-                                #{if station.windCompass == 'SE'}
-                                <div>South East</div>
-                                #{/if}
-                                #{if station.windCompass == 'SSE'}
-                                <div>South South East</div>
-                                #{/if}
-                                #{if station.windCompass == 'S'}
-                                <div>South</div>
-                                #{/if}
-                                #{if station.windCompass == 'SSW'}
-                                <div>South South West</div>
-                                #{/if}
-                                #{if station.windCompass == 'SW'}
-                                <div>South West</div>
-                                #{/if}
-                                #{if station.windCompass == 'WSW'}
-                                <div>West South West</div>
-                                #{/if}
-                                #{if station.windCompass == 'W'}
-                                <div>West</div>
-                                #{/if}
-                                #{if station.windCompass == 'WNW'}
-                                <div>West North West</div>
-                                #{/if}
-                                #{if station.windCompass == 'NW'}
-                                <div>North West</div>
-                                #{/if}
-                                #{if station.windCompass == 'NNW'}
-                                <div>North North West</div>
-                                #{/if}
-                                #{else}
-
-                                #{/else}
-                            </div> --}}
+                        <div>{{windBft}}</div>
+                        {{!-- <div>windDirection:{{windDirection}}</div> --}}
+                            <div>
+                {{#if (eq windDirection "N")}}
+                  <div>North</div>
+                {{else if (eq windDirection "NNE")}}
+                  <div>North North East</div>
+                {{else if (eq windDirection "NE")}}
+                  <div>North East</div>
+                {{else if (eq windDirection "ENE")}}
+                  <div>East North East</div>
+                {{else if (eq windDirection "E")}}
+                  <div>East</div>
+                {{else if (eq windDirection "ESE")}}
+                  <div>East South East</div>
+                {{else if (eq windDirection "SE")}}
+                  <div>South East</div>
+                {{else if (eq windDirection "SSE")}}
+                  <div>South South East</div>
+                {{else if (eq windDirection "S")}}
+                  <div>South</div>
+                {{else if (eq windDirection "SSW")}}
+                  <div>South South West</div>
+                {{else if (eq windDirection "SW")}}
+                  <div>South West</div>
+                {{else if (eq windDirection "WSW")}}
+                  <div>West South West</div>
+                {{else if (eq windDirection "W")}}
+                  <div>West</div>
+                {{else if (eq windDirection "WNW")}}
+                  <div>West North West</div>
+                {{else if (eq windDirection "NW")}}
+                  <div>North West</div>
+                {{else if (eq windDirection "NNW")}}
+                  <div>North North West</div>
+                {{else}}
+                  N/A
+                {{/if}}
+              </div>
                             <div>Feels like: {{windChill}}°C</div>
                     
-                      <div>{{windBft}}</div>
+                     
                     <div>Max: {{minWindSpeed}}</div>
                     <div>Min: {{maxWindSpeed}}</div>
                         </div>
@@ -152,8 +139,8 @@
                     <div class="card-bottom">
                         <div>
                     <div>{{pressure}} hpa</div>
-                    <div>Max: {{maxPressure}}</div>
-                    <div>Min: {{minPressure}}</div>
+                    <div>Max: {{maxPressure}} hpa</div>
+                    <div>Min: {{minPressure}} hpa</div>
                         </div>
                     <div class="trend-icon">
                            <i class="fas fa-arrow-up has-text-danger" style="display: {{#if (eq  pressureTrend 'Rising')}}inline{{else}}none{{/if}}"></i>
@@ -164,19 +151,23 @@
             </div>
         </div>
         <span class="icon">
-         <a href="/station/{{_id}}" >
+         <a class="tooltip" href="/station/{{_id}}" >
             <i class="fas fa-sharp fa-light fa-folder-open fa-lg" style="color: #302850;"></i>
+            <span class="tooltiptext">Open station</span>
          </a>
       </span>
         <span class="icon">
 
-<a type="button" class="delete-button" onclick="deleteStation('{{_id}}')">
+<a type="button" class="delete-button tooltip" onclick="deleteStation('{{_id}}')">
                 <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
+                 <span class="tooltiptext">Delete station</span>
             </a>
       </span>
     </div>
 </div>
+{{!-- </div> --}}
 {{/each}}
+
 <div id="map" style="width: 100%; height: 400px;"></div>
 
 {{> add-station}}
@@ -206,33 +197,24 @@ function deleteStation(stationId) {
 
 </script>
 <script>
+ 
+    let mapArray = {{{mapArray}}}; 
 
-	var map = L.map('map').setView([52.1614, -7.1493], 13);
+    document.addEventListener("DOMContentLoaded", function () {
+        var map = L.map('map').setView(mapArray[0], 11);
 
-	var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(map);
+        var markers = [];
 
-	var marker = L.marker([52.1614, -7.1493]).addTo(map)
-		.bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+        // Loop through mapArray to create markers
+        mapArray.forEach(coord => {
+            markers.push(L.marker(coord));
+        });
 
-	
+        var group = L.featureGroup(markers).addTo(map);
 
-
-
-	var popup = L.popup()
-		.setLatLng([52.1614, -7.1493])
-		.setContent('I am a standalone popup.')
-		.openOn(map);
-
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent('You clicked the map at ' + e.latlng.toString())
-			.openOn(map);
-	}
-
-	map.on('click', onMapClick);
-
+        var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    });
 </script>
