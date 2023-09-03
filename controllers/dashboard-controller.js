@@ -7,77 +7,20 @@ export const dashboardController = {
   async index(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
 
-    // Check if loggedInUser exists and has the required properties
     if (!loggedInUser || !loggedInUser._id || !loggedInUser.firstName) {
-      response.redirect("/login"); // Redirect to login page
+      response.redirect("/"); // Redirect to login page
       return;
     }
-    // const stations = await stationStore.getAllStations();
     const stations = await stationStore.getStationsByUserId(loggedInUser._id);
     const readings = await readingStore.getAllReadings();
     const sortedStations = stations.slice().sort((a, b) => a.name.localeCompare(b.name));
-
-    // const data =
-    //   "https://api.openweathermap.org/data/2.5/weather?q=Tramore,Ireland&appid=1034f20414a780ad33f80a0fca6c250d";
     const oneCallRequest = `https://api.openweathermap.org/data/3.0/onecall?lat=52.1624&lon=7.1524&appid=1034f20414a780ad33f80a0fca6c250d`;
     let report = {};
     const result = await axios.get(oneCallRequest);
 
     if (result.status == 200) {
-      // console.log(result.data);
-      // const reading = result.data;
-      // report.temperature = reading.main.temp;
-      // report.windSpeed = reading.wind.speed;
-      // report.pressure = reading.main.pressure;
-      // report.windDirection = reading.wind.deg;
     }
-    // //defining trands
-    // let stationTrend;
-    // if (readings.length >= 3) {
-    //   let lastReading = readings.length - 1;
-    //   let secondLastReading = readings.length - 2;
-    //   let thirdLastReading = readings.length - 3;
 
-    //   if (lastReading.temp > secondLastReading.temp && secondLastReading.temp > thirdLastReading.temp) {
-    //     stationTrend = "Rising";
-    //   } else if (lastReading.temp < secondLastReading.temp && secondLastReading.temp < thirdLastReading.temp) {
-    //     stationTrend = "Dropping";
-    //   } else {
-    //     stationTrend = "Unchanged";
-    //   }
-
-    // Wind trends
-    //   if (
-    //     lastReading.windSpeed > secondLastReading.windSpeed &&
-    //     secondLastReading.windSpeed > thirdLastReading.windSpeed
-    //   ) {
-    //     stationTrend = "Rising";
-    //   } else if (
-    //     lastReading.windSpeed < secondLastReading.windSpeed &&
-    //     secondLastReading.windSpeed < thirdLastReading.windSpeed
-    //   ) {
-    //     stationTrend = "Dropping";
-    //   } else {
-    //     stationTrend = "Unchanged";
-    //   }
-
-    //   // Pressure trends
-    //   if (lastReading.pressure > secondLastReading.pressure && secondLastReading.pressure > thirdLastReading.pressure) {
-    //     station.pressureTrend = "Rising";
-    //   } else if (
-    //     lastReading.pressure < secondLastReading.pressure &&
-    //     secondLastReading.pressure < thirdLastReading.pressure
-    //   ) {
-    //     station.pressureTrend = "Dropping";
-    //   } else {
-    //     station.pressureTrend = "Unchanged";
-    //   }
-    // } else {
-    //   station.trend = "N/A";
-    //   station.windTrend = "N/A";
-    //   station.pressureTrend = "N/A";
-    // }
-    ///////////////////////////////
     const combinedData = sortedStations.map((station) => {
       const matchingReadings = readings.filter((reading) => reading.stationid === station._id);
       const sortedReadingsByTemp = readings ? matchingReadings.sort((a, b) => a.temp - b.temp) : null;
@@ -140,7 +83,6 @@ export const dashboardController = {
         // pressureTrend = "N/A";
       }
 
-      // ////////////////////
       let codeAction;
       if (lastMatchingReading) {
         switch (lastMatchingReading.code) {
@@ -215,47 +157,6 @@ export const dashboardController = {
           windCompass = "";
         }
       }
-      // let wBft;
-      // if (lastMatchingReading && lastMatchingReading.windSpeed !== null) {
-      //   if (lastMatchingReading.windSpeed === 1) {
-      //     wBft = "Calm";
-      //   }
-      //   if (lastMatchingReading.windSpeed > 1 && lastMatchingReading.windSpeed <= 5) {
-      //     wBft = "Light Air";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 6 && lastMatchingReading.windSpeed <= 11) {
-      //     wBft = "Light Breeze";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 12 && lastMatchingReading.windSpeed <= 19) {
-      //     wBft = "Gentle Breeze";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 20 && lastMatchingReading.windSpeed <= 28) {
-      //     wBft = "Moderate Breeze";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 29 && lastMatchingReading.windSpeed <= 38) {
-      //     wBft = "Fresh Breeze";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 39 && lastMatchingReading.windSpeed <= 49) {
-      //     wBft = "Strong Breeze";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 50 && lastMatchingReading.windSpeed <= 61) {
-      //     wBft = "Near Gale";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 62 && lastMatchingReading.windSpeed <= 74) {
-      //     wBft = "Gale";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 75 && lastMatchingReading.windSpeed <= 88) {
-      //     wBft = "Severe Gale";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 89 && lastMatchingReading.windSpeed <= 102) {
-      //     wBft = "Strong storm";
-      //   }
-      //   if (lastMatchingReading.windSpeed >= 103 && lastMatchingReading.windSpeed <= 117) {
-      //     wBft = "Violent storm";
-      //   } else {
-      //     wBft = "";
-      //   }
-      // }
       let wBft;
       if (lastMatchingReading && lastMatchingReading.windSpeed !== null) {
         const windSpeed = lastMatchingReading.windSpeed;
@@ -310,7 +211,7 @@ export const dashboardController = {
         minTemp: lastMatchingReading ? sortedReadingsByTemp[0].temp : "N/A",
         maxTemp: lastMatchingReading ? sortedReadingsByTemp[sortedReadingsByTemp.length - 1].temp : "N/A",
         minWindSpeed: lastMatchingReading ? sortedReadingsByWind[0].windSpeed : "N/A",
-        maxWindSpeed: lastMatchingReading ? sortedReadingsByWind[sortedReadingsByTemp.length - 1].windSpeed : "N/A",
+        maxWindSpeed: lastMatchingReading ? sortedReadingsByWind[sortedReadingsByWind.length - 1].windSpeed : "N/A",
         minPressure: lastMatchingReading ? sortedReadingsByPressure[0].pressure : "N/A",
         maxPressure: lastMatchingReading
           ? sortedReadingsByPressure[sortedReadingsByPressure.length - 1].pressure
@@ -318,7 +219,6 @@ export const dashboardController = {
         tempTrend: tTrend,
         pressureTrend: pTrend,
         windTrend: wTrend,
-        // reading from api call
         reading: report,
       };
     });

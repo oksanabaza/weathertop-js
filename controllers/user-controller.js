@@ -7,7 +7,7 @@ export const userController = {
 
     // Check if loggedInUser exists and has the required properties
     if (!loggedInUser || !loggedInUser._id || !loggedInUser.firstName) {
-      response.redirect("/login"); // Redirect to login page
+      response.redirect("/"); // Redirect to login page
       return;
     }
     const getUserById = await userStore.getUserById(loggedInUser._id);
@@ -26,7 +26,7 @@ export const userController = {
   async editUser(request, response) {
     const loggedInUser = await accountsController.getLoggedInUser(request);
     if (!loggedInUser || !loggedInUser._id || !loggedInUser.firstName) {
-      response.redirect("/login");
+      response.redirect("/");
       return;
     }
     const updatedUserData = {

@@ -9,8 +9,9 @@ import { readingStore } from "./models/reading-store.js";
 
 export const router = express.Router();
 
+// router.get("/", accountsController.index);
 router.get("/", accountsController.index);
-router.get("/login", accountsController.login);
+router.get("/logout", accountsController.logout);
 router.get("/signup", accountsController.signup);
 router.get("/logout", accountsController.logout);
 router.post("/register", accountsController.register);
@@ -41,8 +42,4 @@ router.put("/user/:id/edit", async (req, res) => {
 });
 
 router.delete("/station/:id/deletestation", dashboardController.deleteStation);
-// router.delete("/station/:stationId/deletereading/:readingId", readingStore.getReadingById);
-
 router.delete("/station/:stationid/deletereading/:_id", stationController.deleteReading);
-
-// router.post("/updateToggle", stationController.updateToggle);

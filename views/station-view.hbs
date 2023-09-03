@@ -7,24 +7,13 @@
   {{> list-readings}}
   {{> add-reading}}
   <div>
-      {{!-- <div id="detailedInfo" style="display: none;">
-    Timezone {{reading.timezone}}  
-      pressure {{reading.pressure}}
-     windSpeed: {{reading.windSpeed}}
-      code: {{reading.code}}
-       temp: {{reading.temp}}
-     
-  </div> --}}
-
     <a id="generateButton" onclick="generateReading('{{station._id}}')" class="button">
       AutoGenerate Reading
     </a>
   </div>
-
 </section>
 <script>
   function generateReading(id){
- console.log(id,"id")
      fetch(`/station/${id}/generatereading`, {
             method: "POST",
             headers: {

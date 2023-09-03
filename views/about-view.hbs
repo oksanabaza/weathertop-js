@@ -1,13 +1,43 @@
 {{> menu active="about"}}
 
-<section class="box is-3 has-text-centered">
+<section class="box is-3 has-text-centered about-section">
   <h3 class="title">
-    Station 2
+    About Weather Top Application
   </h3>
   <div class="section">
-    <p>
-      A Little Weathertop - Version 2
-    </p>
-    <div>{{json.coord.lon}}</div>
+    <div class="tabs is-centered">
+      <ul>
+        <li class="is-active"><a onclick="showTab(0)">About Us</a></li>
+        <li><a onclick="showTab(1)">Our Technology</a></li>
+        <li><a onclick="showTab(2)">Our History</a></li>
+        <li><a onclick="showTab(3)">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="content" id="content0">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum ex eget lorem posuere, sit amet interdum risus pellentesque.</p>
+    </div>
+    <div class="content" id="content1">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo minus veniam ipsam vero similique minima laudantium error deserunt commodi iste.</p>
+    </div>
+    <div class="content" id="content2">
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi maxime eos rerum corrupti odio perferendis corporis debitis nobis dolorum omnis sunt facere, aperiam veniam at, nesciunt ipsum obcaecati libero. Dolor.</p>
+    </div>
+    <div class="content" id="content3">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, harum.</p>
+    </div>
   </div>
 </section>
+
+<script>
+  function showTab(index) {
+    // Hide all content divs
+    var contentDivs = document.getElementsByClassName("content");
+    for (var i = 0; i < contentDivs.length; i++) {
+      contentDivs[i].style.display = "none";
+    }
+    // Show the selected content div
+    document.getElementById("content" + index).style.display = "block";
+  }
+ 
+  
+</script>

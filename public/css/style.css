@@ -2,12 +2,9 @@
   /* --container-max-width: 1384px;
   --container-medium-width: 1084px; */
 
-  /* --orange: #faa41a;
-  --violet: #302850; */
-  --orange: darkblue;
+  --darkblue: darkblue;
   --violet: aliceblue;
   --white: #ffffff;
-  /* for main cards background-color: ghostwhite; */
 }
 body {
   min-height: 100vh;
@@ -18,6 +15,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
 }
+
 .header {
   position: fixed;
   left: 0px;
@@ -26,9 +24,6 @@ body {
   z-index: 1;
   background: transparent;
   box-shadow: 10px 5px 5px #00000059;
-}
-section {
-  /* margin-top: 150px; */
 }
 .main-content {
   margin-top: 150px;
@@ -43,21 +38,9 @@ section {
 }
 
 .dashboard {
-  /* display: grid; */
   background-color: var(--violet);
 }
 
-a {
-  /* color: var(--orange); */
-}
-
-a:hover {
-  /* color: var(--violet);
-  background-color: #e5c695;
-  border-radius: 50%; */
-  /* background-color: var(--orange); */
-  /* transform: scale(1.3); */
-}
 td.options {
   text-align: center !important;
 }
@@ -66,7 +49,7 @@ td.options {
 }
 
 .navbar.is-info {
-  color: var(--orange);
+  color: var(--darkblue);
   background-color: var(--violet);
 }
 
@@ -84,47 +67,41 @@ footer {
 }
 
 #navbarMenu a {
-  color: var(--orange);
+  color: var(--darkblue);
   background-color: var(--violet);
 }
 
 #navbarMenu a:hover {
   color: var(--violet);
-  background-color: var(--orange);
+  background-color: var(--darkblue);
 }
 
 .button.is-info {
-  /* color: var(--violet);
-  background-color: var(--orange) !important; */
-  color: var(--orange) !important;
+  color: var(--darkblue) !important;
   background-color: var(--violet) !important;
-  border: 1px solid var(--orange);
+  border: 1px solid var(--darkblue);
 }
 #generateButton {
-  color: var(--orange) !important;
-  /* background-color: var(--violet) !important; */
-  border: 1px solid var(--orange);
+  color: var(--darkblue) !important;
+  border: 1px solid var(--darkblue);
 }
 .button.is-info:hover {
   color: var(--violet) !important;
-  background-color: var(--orange) !important;
-  /* color: var(--orange) !important;
-  background-color: var(--violet) !important;
-  border: 1px solid var(--orange); */
+  background-color: var(--darkblue) !important;
 }
 
 .hero .hero-body {
-  color: var(--orange);
+  color: var(--darkblue);
   background-color: var(--violet);
 }
 .header-wrapper .title {
   margin: auto 0;
 }
 .hero.is-info .title {
-  color: var(--orange);
+  color: var(--darkblue);
 }
 .hero.is-info.is-small {
-  color: var(--orange);
+  color: var(--darkblue);
   background-color: #f5f5f5;
 }
 .header-wrapper {
@@ -191,14 +168,14 @@ body {
 
 .login-button {
   margin-top: 20px;
-  background-color: var(--orange);
-  border-color: var(--orange);
+  background-color: var(--darkblue);
+  border-color: var(--darkblue);
   color: var(--white);
 }
 
 .login-button:hover {
-  background-color: var(--orange);
-  border-color: var(--orange);
+  background-color: var(--darkblue);
+  border-color: var(--darkblue);
 }
 
 .login-footer {
@@ -215,11 +192,11 @@ body {
 
 .signup-footer .button {
   color: var(--violet);
-  background-color: var(--orange);
+  background-color: var(--darkblue);
 }
 
 .signup-footer .button:hover {
-  color: var(--orange);
+  color: var(--darkblue);
   background-color: var(--violet);
 }
 
@@ -240,20 +217,19 @@ body {
 }
 
 .card {
-  /* background-color: var(--violet); */
-  color: var(--orange);
+  color: var(--darkblue);
 }
 
 .card h1 {
-  color: var(--orange);
+  color: var(--darkblue);
 }
 
 .card p {
-  color: var(--orange);
+  color: var(--darkblue);
 }
 
 .back-btn {
-  color: var(--orange);
+  color: var(--darkblue);
   margin: 20px 0;
 }
 
@@ -263,17 +239,17 @@ body {
 
 a#dashboard.navbar-item.is-active {
   color: #302850;
-  background-color: var(--orange);
+  background-color: var(--darkblue);
 }
 
 a#admin.navbar-item.is-active {
   color: #302850;
-  background-color: var(--orange);
+  background-color: var(--darkblue);
 }
 
 a#about.navbar-item.is-active {
   color: #302850;
-  background-color: var(--orange);
+  background-color: var(--darkblue);
 }
 
 .navbar-menu {
@@ -326,23 +302,23 @@ a#about.navbar-item.is-active {
 }
 #add-station button {
   color: var(--violet);
-  background-color: var(--orange);
+  background-color: var(--darkblue);
 }
 #add-reading button {
   color: var(--violet);
-  background-color: var(--orange);
+  background-color: var(--darkblue);
 }
 
 .navbar-brand:hover {
-  color: var(--orange);
+  color: var(--darkblue);
   background-color: var(--violet);
 }
 .member-submit-btn {
   color: var(--violet);
-  background-color: var(--orange);
+  background-color: var(--darkblue);
 }
 .member-submit-btn:hover {
-  color: var(--orange);
+  color: var(--darkblue);
   background-color: var(--violet);
 }
 #map {
@@ -353,35 +329,16 @@ a#about.navbar-item.is-active {
 #chart {
   margin-bottom: 2rem;
 }
-/* max-width 1023 */
 .table {
-  /* color: var(--violet); */
-  /* background: var(--orange); */
-  /* background: linear-gradient(90deg, var(--orange) 0%, var(--violet) 54%); */
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
   border-radius: 6px;
 }
 
-.table tr.is-selected {
-  /* background-color: var(--violet);
-  color: var(--orange); */
-}
-th {
-  /* border-color: var(--violet) !important; */
-  /* color: var(--orange); */
-}
-td {
-  /* border-color: var(--violet) !important; */
-  /* background-color: var(--violet);
-  color: var(--orange); */
-}
-/* Tooltip container */
 .tooltip {
   position: relative;
   display: inline-block;
 }
 
-/* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
 
@@ -390,12 +347,10 @@ td {
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-  /*  */
   width: 120px;
   top: 140%;
   left: 50%;
   margin-left: -60px;
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
 }
@@ -407,19 +362,17 @@ td {
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-  /*  */
   width: 120px;
   bottom: -20%;
   left: 50%;
   margin-left: -60px;
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
 }
 .tooltip:hover .station-tooltiptext {
   visibility: visible;
 }
-/* Show the tooltip text when you mouse over the tooltip container */
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
@@ -432,7 +385,6 @@ td {
 .user-card {
   max-width: 600px;
   margin: auto;
-  /* background-color: aliceblue; */
   background-color: #f0f8ff87;
 }
 .user-card input {
@@ -442,22 +394,6 @@ td {
 .add-station {
   background-color: aliceblue;
 }
-/* div div.box {
-  background-image: url("./../images/storm.jpg");
-} */
-/* .has-background-success {
-  background-image: url("./../images/sunny.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-.box {
-  background-color: unset;
-} */
-/* .dashboard {
-  background-image: url("./../images/sunny.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-} */
 .main-login-menu {
   display: flex;
   justify-content: space-between;
@@ -467,6 +403,8 @@ td {
 .main-login-section {
   display: flex;
   justify-content: center;
+  background-color: #f0f8ff63;
+  margin-top: 20px;
 }
 .main-login-image {
   display: flex;
@@ -481,4 +419,15 @@ td {
 }
 .link-text {
   text-decoration: underline;
+}
+.about-section {
+  background-color: #ffffff8a;
+}
+
+.label {
+  color: #302850;
+}
+.hero.is-info .navbar-menu {
+  background-color: inherit !important;
+  box-shadow: unset !important;
 }

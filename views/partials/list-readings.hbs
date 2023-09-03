@@ -20,7 +20,7 @@
         <div class="card-content">
 
           <h1>Weather</h1>
-
+<div>{{code}}</div>
           <div class="weather-icon">
             {{#if (eq code "Clear")}}
               <img alt="clear" src="/images/sun.png" />
@@ -55,6 +55,8 @@
             <div>
               <div>{{temp}}°C</div>
               <div>{{tempF}}°F</div>
+              <div>Max: {{minTemp}}°C</div>
+              <div>Min: {{maxTemp}}°C</div>
             </div>
           </div>
         </div>
@@ -67,7 +69,7 @@
           </div>
           <div class="card-bottom">
             <div>
-
+ <div>{{windBft}}</div>
               <div>
                 {{#if (eq windDirection "N")}}
                   <div>North</div>
@@ -107,8 +109,10 @@
               </div>
 
 
-              <div>{{windBft}}</div>
-
+             
+           <div>Feels like: {{windChill}}°C</div>
+            <div>Max: {{minWindSpeed}}</div>
+            <div>Min: {{maxWindSpeed}}</div>
             </div>
 
           </div>
@@ -123,6 +127,8 @@
           <div class="card-bottom">
             <div>
               <div>{{pressure}} hpa</div>
+              <div>Min: {{minPressure}} hpa</div>
+              <div>Max: {{maxPressure}} hpa</div>
 
           </div>
         </div>

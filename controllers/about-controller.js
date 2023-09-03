@@ -5,7 +5,7 @@ export const aboutController = {
 
     // Check if loggedInUser exists and has the required properties
     if (!loggedInUser || !loggedInUser._id || !loggedInUser.firstName) {
-      response.redirect("/login"); // Redirect to login page
+      response.redirect("/"); // Redirect to login page
       return;
     }
     const res = await fetch(
