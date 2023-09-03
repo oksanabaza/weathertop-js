@@ -1,23 +1,26 @@
 <div class="content box dashboard container">
   <div>
     <div class="card-wrapper">
-      <div class="card">
+      <div class="card tooltip">
+         <span class="station-tooltiptext">{{station.name}}</span>
         <div class="card-content">
           <div class="card-header">
             <h1>{{station.name}}</h1>
             <img src="/images/location.png" />
+           
           </div>
           <div class="media-content">
             <p class="subtitle is-6">Lat: {{station.latitude}}</p>
             <p class="subtitle is-6">Lng: {{station.longitude}}</p>
           </div>
         </div>
+         
       </div>
       <div class="card">
         <div class="card-content">
 
           <h1>Weather</h1>
-
+<div>{{code}}</div>
           <div class="weather-icon">
             {{#if (eq code "Clear")}}
               <img alt="clear" src="/images/sun.png" />
@@ -52,6 +55,8 @@
             <div>
               <div>{{temp}}°C</div>
               <div>{{tempF}}°F</div>
+              <div>Max: {{minTemp}}°C</div>
+              <div>Min: {{maxTemp}}°C</div>
             </div>
           </div>
         </div>
@@ -64,7 +69,7 @@
           </div>
           <div class="card-bottom">
             <div>
-
+ <div>{{windBft}}</div>
               <div>
                 {{#if (eq windDirection "N")}}
                   <div>North</div>
@@ -104,8 +109,10 @@
               </div>
 
 
-              <div>{{windBft}}</div>
-
+             
+           <div>Feels like: {{windChill}}°C</div>
+            <div>Max: {{minWindSpeed}}</div>
+            <div>Min: {{maxWindSpeed}}</div>
             </div>
 
           </div>
@@ -120,6 +127,8 @@
           <div class="card-bottom">
             <div>
               <div>{{pressure}} hpa</div>
+              <div>Min: {{minPressure}} hpa</div>
+              <div>Max: {{maxPressure}} hpa</div>
 
           </div>
         </div>
@@ -130,21 +139,26 @@
   </div>
 
 </div>
-<table class="table is-fullwidth">
+<div style="margin-top: 20px;">
+<div class="box" id="chart"></div>
+
+</div>
+<table class="table is-fullwidth ">
 
   <thead>
-    <tr>
+    <tr class='th'>
       <th>Date</th>
       <th>Code</th>
-      <th>Temperature</th>
+      <th>Temperature °C</th>
       <th>Wind Speed</th>
+        <th>Wind Direction</th>
       <th>Pressure</th>
       <th>Options</th>
     </tr>
   </thead>
   <tbody>
     {{#each station.readings}}
-      <tr>
+      <tr >
         <td>{{date}}</td>
         <td>
           {{code}}
@@ -155,20 +169,59 @@
 
         <td>
           {{windSpeed}}
+        </td> 
+        <td>
+          {{windDirection}}
         </td>
         <td>
           {{pressure}}
         </td>
-        <td>
-          <a type="button" onclick="deleteReading('{{_id}}','{{stationid}}')" class="button is-danger delete-button">
-            Delete Reading</a>
+        <td class="options">
+          {{!-- <a type="button" onclick="deleteReading('{{_id}}','{{stationid}}')" class="button is-danger delete-button">
+            Delete Reading</a> --}}
+            {{!-- <span class=""> --}}
+
+<a type="button" class="delete-button tooltip" onclick="deleteReading('{{_id}}','{{stationid}}')">
+                <i class="fas fa-trash fa-lg" style="color: #302850;"></i>
+                  <span class="tooltiptext">Delete reading</span>
+            </a>
+           
+
+
+      {{!-- </span> --}}
         </td>
       </tr>
     {{/each}}
 
+        </td>
   </tbody>
 </table>
+<script>
+  const data = {
+    labels: [
+      {{#each reading.trendLabels}}
+        "{{this}}",
+      {{/each}}
+    ],
+    datasets: [
+      {
+        name: "Temperature", type: "line",
+        values: [
+          {{#each reading.tempTrend}}
+            {{this}} ,
+          {{/each}}
+        ]
+      }
+    ]
+  }
 
+  const chart = new frappe.Chart("#chart", {
+    title: "Temperature Trend",
+    data: data,
+    type: 'line',
+    height: 250,
+  })
+</script>
 <script>
   function deleteReading(id, stationid) { 
 

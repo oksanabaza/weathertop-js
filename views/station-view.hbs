@@ -1,10 +1,40 @@
 {{> menu}}
 
-<section class="section">
+<section class="section station-section">
   <div class="title">
     {{station.title}}
   </div>
   {{> list-readings}}
   {{> add-reading}}
-
+  <div>
+    <a id="generateButton" onclick="generateReading('{{station._id}}')" class="button">
+      AutoGenerate Reading
+    </a>
+  </div>
 </section>
+<script>
+  function generateReading(id){
+     fetch(`/station/${id}/generatereading`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+              
+                window.location.href = `/station/${id}`;
+             
+                
+            } else {
+                console.error("Error deleting station");
+            }
+        })
+        .catch(error => {
+            console.error("Error deleting station:", error);
+        });
+     
+
+  }
+</script>
+

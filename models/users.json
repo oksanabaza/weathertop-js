@@ -2,7 +2,7 @@
   "file": "./models/users.json",
   "users": [
     {
-      "firstName": "oksana",
+      "firstName": "Oksana",
       "lastName": "admin lastname",
       "email": "admin@gmail.com",
       "password": "admin",

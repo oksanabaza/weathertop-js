@@ -41,7 +41,7 @@ export const accountsController = {
       console.log(`logging in ${user.email}`);
       response.redirect("/dashboard");
     } else {
-      response.redirect("/login");
+      response.redirect("/");
     }
   },
 
